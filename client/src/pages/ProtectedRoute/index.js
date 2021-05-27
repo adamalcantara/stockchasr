@@ -1,4 +1,10 @@
 import React, { useEffect, useContext } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 import Card from "../../components/Card"
 import { UserContext } from "../../utils/UserContext";
 import clsx from 'clsx';
@@ -21,6 +27,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../../components/listItems';
+
+//Importing elements for dash
+import FindStock from "../../components/FindStock"
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -110,33 +119,33 @@ const useStyles = makeStyles((theme) => ({
 
 function ProtectedRoute() {
 
-	const [user, dispatch] = useContext(UserContext)
-	console.log(user)
+  const [user, dispatch] = useContext(UserContext)
+  console.log(user)
 
-	useEffect(() => {
-		fetch('api/users/user', {
-			credentials: 'include'
-		})
-			.then((res) => {
-				console.log(`response to authenticate ${res}`);
-				return res.json(res)
+  useEffect(() => {
+    fetch('api/users/user', {
+      credentials: 'include'
+    })
+      .then((res) => {
+        console.log(`response to authenticate ${res}`);
+        return res.json(res)
 
-			})
-			.then(data => {
-				console.log(data);
-				dispatch({
-					type: "GET_USER",
-					payload: data
-				})
+      })
+      .then(data => {
+        console.log(data);
+        dispatch({
+          type: "GET_USER",
+          payload: data
+        })
 
-			})
-			.catch((err) => {
-				console.log('Error fetching authorized user.');
-			});
+      })
+      .catch((err) => {
+        console.log('Error fetching authorized user.');
+      });
 
-	}, []);
+  }, []);
 
-	const classes = useStyles();
+  const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -190,7 +199,9 @@ function ProtectedRoute() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <h1>You have reached the fountain of youth</h1>
+          <Switch>
+            <FindStock />
+          </Switch>
         </Container>
       </main>
     </div>
