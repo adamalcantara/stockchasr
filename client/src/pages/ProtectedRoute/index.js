@@ -7,6 +7,9 @@ import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter } from "rea
 import { makeStyles } from "@material-ui/core/styles";
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 
+//Importing logo
+import Logo from "../../assets/logoblue.png";
+
 //Import icons
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import LineStyleIcon from '@material-ui/icons/LineStyle';
@@ -15,12 +18,16 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 //Importing pages
 import FindStock from "../../components/FindStock";
 import YourDash from '../../components/YourDash';
+import YourConnections from "../../components/YourConnections";
 
 const useStyles = makeStyles((theme) => ({
     drawerPaper: { width: 'inherit' },
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
+    },
+    img: {
+        margin: '20px',
     }
 }))
 
@@ -65,7 +72,7 @@ function ProtectedRoute() {
                     anchor="left"
                     open={true}
                     classes={{ paper: classes.drawerPaper }}>
-
+                    <img src={Logo} alt="logo" className={classes.img}/>
                     <List>
                         <Link to="/dashboard" className={classes.link}>
                             <ListItem button>
@@ -99,6 +106,9 @@ function ProtectedRoute() {
                     </Route>
                     <Route exact path="/dashboard">
                         <YourDash />
+                    </Route>
+                    <Route exact path="/connections">
+                        <YourConnections />
                     </Route>
                 </Switch>
 
