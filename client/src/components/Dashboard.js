@@ -197,6 +197,7 @@ export default function Dashboard() {
           <Box pt={4}>
             <Copyright />
           </Box> */}
+          {/* This is a test to make sure that the new commits aare working */}
           <FindStock />
         </Container>
       </main>
