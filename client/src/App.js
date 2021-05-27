@@ -14,6 +14,7 @@ import PublicRoute from "./pages/PublicRoute";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import './App.css';
 import { UserProvider } from "./utils/UserContext";
+import Home from "./pages/Home"
 
 //Now we have all the stuff we need .. let's render some components with the Router
 const AuthExample = () => (
@@ -21,6 +22,7 @@ const AuthExample = () => (
 		<Router>
 			<div>
 				<Switch>
+					{/* <Route path="/" component={Home} /> */}
 					<Route path="/public" component={PublicRoute} />
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
