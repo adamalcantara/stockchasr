@@ -20,6 +20,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
+import API from '../utils/API';
+import FindStock from '../components/FindStock'
 // import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -168,6 +170,7 @@ function DashboardContent() {
       >
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <FindStock/>
           <Grid container spacing={3}>
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
