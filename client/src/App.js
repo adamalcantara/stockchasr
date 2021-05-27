@@ -24,7 +24,7 @@ const AuthExample = () => (
 				{/* <Container> */}
 					<Switch>
 						<Route path="/public" component={PublicRoute} />
-						<Route path="/login" component={Login} />
+						<Route exact path="/" component={Login} />
 						<Route path="/register" component={Register} />
 						<PrivateRoute path="/protected" component={ProtectedRoute} />
 						{/* <Route component={NoMatch} /> */}
