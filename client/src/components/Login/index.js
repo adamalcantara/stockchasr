@@ -3,6 +3,9 @@ import LoginForm from "../LoginForm";
 import Auth from "../../utils/Auth";
 import { useLocation, useHistory } from "react-router";
 import Nav from "../Nav";
+import "./style.css"
+import Logo from "../../assets/logoblue.png";
+
 //Uses the Auth methods to actually login with the LoginForm Component.
 
 function Login() {
@@ -47,8 +50,10 @@ function Login() {
 	}
 
 	return (
-		<div>
-			<Nav className="App-header" />
+		<div className="pageContainer">
+			<div id="imgContainer">
+				<img src={Logo} id="loginLogo"/>
+			</div>
 			<LoginForm onLogin={login} />
 		</div>
 	)
