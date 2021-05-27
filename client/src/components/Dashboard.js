@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -20,14 +19,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import FindStock from "../components/FindStock";
 // import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import FindStock from "./FindStock"
+import "./dashboard.css"
 
-function Copyright(props) {
+function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -41,6 +41,9 @@ function Copyright(props) {
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
@@ -72,6 +75,9 @@ const useStyles = makeStyles((theme) => ({
   menuButtonHidden: {
     display: 'none',
   },
+  title: {
+    flexGrow: 1,
+  },
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -80,7 +86,6 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    boxSizing: 'border-box',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -94,41 +99,52 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+  },
+  fixedHeight: {
+    height: 240,
+  },
 }));
 
-const defaultTheme = createMuiTheme();
-
-function DashboardContent() {
+export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
+      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={toggleDrawer}
+            onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
-          >
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
           <IconButton color="inherit">
@@ -146,7 +162,7 @@ function DashboardContent() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={toggleDrawer}>
+          <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
@@ -155,32 +171,35 @@ function DashboardContent() {
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>
-      <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: '100vh',
-          overflow: 'auto',
-        }}
-      >
+      <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-           <FindStock />
+        <Container maxWidth="lg" className={classes.container}>
+          {/* <Grid container spacing={3}>
+            
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <Chart />
+              </Paper>
+            </Grid>
+           
+            <Grid item xs={12} md={4} lg={3}>
+              <Paper className={fixedHeightPaper}>
+                <Deposits />
+              </Paper>
+            </Grid>
+           
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <Orders />
+              </Paper>
+            </Grid>
+          </Grid>
+          <Box pt={4}>
+            <Copyright />
+          </Box> */}
+          <FindStock />
         </Container>
-      </Box>
-    </Box>
-  );
-}
-
-export default function Dashboard() {
-  return (
-    // TODO: Remove ThemeProvider once makeStyles is removed
-    <ThemeProvider theme={defaultTheme}>
-      <DashboardContent />
-    </ThemeProvider>
+      </main>
+    </div>
   );
 }
