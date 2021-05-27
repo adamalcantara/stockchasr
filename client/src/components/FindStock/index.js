@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useState, Component } from "react";
+import API from "../../utils/API";
+import SearchForm from "./SearchForm";
 
-const FindStock = () => {
+export default class FindStock extends React.Component {
+  state = {
+    stocks: [],
+  };
+
+  componentDidMount() {
+    API.findStock().then((res) => {
+      console.log(res);
+    });
+  }
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    this.findStock(this.state.stocks);
+  };
+
+  render() {
     return (
-        <div>
-            <h1>You have reached the FindStock element</h1>
-            <input type='text' placeholder='Search'></input>
-            <button className="btn btn-primary">Search</button>
-        </div>
-    )
+      <div>
+        {/* <ul className="list-group">
+          <li className="list-group-item">{this.state}</li>
+        </ul>
+        <SearchForm handleFormSubmit={this.handleFormSubmit} /> */}
+      </div>
+    );
+  }
 }
-
-export default FindStock
