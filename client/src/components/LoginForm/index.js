@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import Card from "../Card"
+import "./style.css"
 
 function LoginForm({ onLogin }) {
 

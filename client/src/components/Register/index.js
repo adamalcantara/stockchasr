@@ -2,6 +2,8 @@ import React from 'react';
 import RegisterForm from "../RegisterForm";
 import { useHistory } from "react-router";
 import Auth from "../../utils/Auth";
+import Logo from "../../assets/logoblue.png"
+import "./style.css"
 //The component for doing the actual signup of the User
 
 function Register() {
@@ -50,7 +52,10 @@ function Register() {
 	}
 
 	return (
-		<div>
+		<div className="pageContainer">
+			<div id="imgContainer">
+				<img src={Logo} id="loginLogo"/>
+			</div>
 			<RegisterForm onRegister={register} />
 		</div>
 	)
