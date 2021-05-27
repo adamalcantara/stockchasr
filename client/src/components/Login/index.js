@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LoginForm from "../LoginForm";
 import Auth from "../../utils/Auth";
 import { useLocation, useHistory } from "react-router";
+import Nav from "../Nav";
 //Uses the Auth methods to actually login with the LoginForm Component.
 
 function Login() {
@@ -47,6 +48,7 @@ function Login() {
 
 	return (
 		<div>
+			<Nav className="App-header" />
 			<LoginForm onLogin={login} />
 		</div>
 	)

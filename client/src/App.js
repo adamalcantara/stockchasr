@@ -14,21 +14,22 @@ import PublicRoute from "./pages/PublicRoute";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import './App.css';
 import { UserProvider } from "./utils/UserContext";
-import Home from "./pages/Home"
 
 //Now we have all the stuff we need .. let's render some components with the Router
 const AuthExample = () => (
 	<UserProvider>
 		<Router>
 			<div>
-				<Switch>
-					{/* <Route path="/" component={Home} /> */}
-					<Route path="/public" component={PublicRoute} />
-					<Route path="/login" component={Login} />
-					<Route path="/register" component={Register} />
-					<PrivateRoute path="/protected" component={ProtectedRoute} />
-					{/* <Route component={NoMatch} /> */}
-				</Switch>
+				{/* <Nav className="App-header" /> */}
+				{/* <Container> */}
+					<Switch>
+						<Route path="/public" component={PublicRoute} />
+						<Route path="/login" component={Login} />
+						<Route path="/register" component={Register} />
+						<PrivateRoute path="/protected" component={ProtectedRoute} />
+						{/* <Route component={NoMatch} /> */}
+					</Switch>
+				{/* </Container> */}
 			</div>
 		</Router>
 	</UserProvider>
@@ -47,23 +48,23 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 				Auth.isAuthenticated ? (
 					<Component {...props} />
 				) : (
-					<div className="container">
-						<div className="alert alert-danger text-center" role="alert">
-							This page is private to authenticated users.
+						<div className="container">
+							<div className="alert alert-danger text-center" role="alert">
+								This page is private to authenticated users.
 					</div>
-						<div className="row">
-							<div className="col-sm"></div>
-							<div className="col-sm">
-								<h3>Please Register or Login</h3>
+							<div className="row">
+								<div className="col-sm"></div>
+								<div className="col-sm">
+									<h3>Please Register or Login</h3>
+								</div>
+								<div className="col-sm"></div>
 							</div>
-							<div className="col-sm"></div>
+							<Redirect to={{
+								pathname: '/login',
+								state: { from: props.location }
+							}} />
 						</div>
-						<Redirect to={{
-							pathname: '/login',
-							state: { from: props.location }
-						}} />
-					</div>
-				)
+					)
 			)} />
 		</div>
 	</Router>
