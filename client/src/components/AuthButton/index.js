@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import Auth from "../../utils/Auth";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../utils/UserContext";
+import "./style.css"
+
+
 
 const AuthButton = () => {
 	console.log("NAV", Auth.isAuthenticated);
@@ -24,9 +27,9 @@ const AuthButton = () => {
 			</button>
 		) : (
 				<Link
-					className="btn btn-success"
+					className="btn signBtn"
 					to="/login"
-				>Login
+				>Sign In
 				</Link>
 			)
 	)
