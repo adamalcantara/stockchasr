@@ -33,9 +33,9 @@ function FindStock() {
         <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
         {/* Company Name */}
         <h2>{stock.name}</h2>
-        {/* {stock.length > 0 ? <h4>CEO: {stock.ceo}</h4> : ''}
-       {stock.length > 0 ? <h5>Industry: {stock.industry}</h5>: ''}
-       {stock.length > 0 ? <h5>Exchange: {stock.exchange} ({stock.exchangeSymbol})</h5> : ''} */}
+        <h4>{stock.ceo}</h4>
+       <h5>{stock.industry}</h5>
+        <h5>{stock.exchange} {stock.exchangeSymbol}</h5>
        {/* Company Website */}
         <a href={stock.url}>{stock.url}</a>
        {/* {stock.length > 0 ? <h2>About</h2> : ''} */}
