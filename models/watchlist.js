@@ -5,4 +5,6 @@ const Watchlist = new Schema({
     symbol: String,
 });
 
-module.exports = mongoose.model('watchlist', Watchlist);
+const Watchlist = mongoose.model('watchlist', Watchlist);
+
+module.exports = Watchlist; 
