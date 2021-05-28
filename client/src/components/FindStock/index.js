@@ -15,9 +15,9 @@ function FindStock() {
 //  }
 
 
- const getStockInfo = (e) => {
+ const getStockInfo = (search) => {
    // how we are hooking into search input
-   const search = e.target.previousSibling.value
+  //  const search = e.target.previousSibling.value
    API.findInfo(search).then((res) => {
      console.log(res.data);
      // setting state to data 
@@ -28,7 +28,7 @@ function FindStock() {
     return (
       <div>
 
-        <SearchForm getStockInfo={getStockInfo}/>
+        <SearchForm getStockInfo={getStockInfo} stock={stock}/>
         {/* Ticker Symbol */}
         <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
         {/* Company Name */}
