@@ -53,6 +53,7 @@ module.exports = {
 			if (err) {
 				return next(err);
 			}
+			console.log('The three codemigos are here to save the day')
 			console.log(`User at login ${req.user.username}`);
 
 			res.status(200).json({ test: " testvalue" });
@@ -71,6 +72,27 @@ module.exports = {
 	test: function (req, res, next) {
 		console.log(`Ping Dinger ${req.statusCode}`);
 		res.status(200).send("Dong!");
-	}
+	},
+
+
+	//user clicks button, stock symbol gets put in database. Watchlist data appends to dashboard page. 
+	watchlist: function (req, res, next) {
+		console.log(`This is whipped cream goin in the coffee goin on right here guys ${req.statusCode}`);
+		// update state user string for the symbol
+		this.setState({
+			symbol: String,
+		});
+		//create API in new method
+		
+		//that route calls this controller
+
+		// call the model and save to that model
+
+		//push to array with query
+
+		//custom err if user selects an already followed stock
+
+		res.status(200).send("Sounds good, John!");
+	},
 
 };

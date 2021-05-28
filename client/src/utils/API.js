@@ -6,3 +6,4 @@ export default {
     return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + APIkey + "&symbols=" + searchValue + "&interval=1min");
   },
 };
+

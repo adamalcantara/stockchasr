@@ -21,6 +21,7 @@ function FindStock() {
           <li className="list-group-item">{this.state}</li>
         </ul> */}
         <SearchForm getStock={getStock}/>
+        <button>Add To Watchlist</button>
         {stock.length > 0 ? <h1>{stock[0].symbol}</h1> : ''}
         {stock.length > 0 ? <h1>{stock[0].exchange}</h1> : ''}
       </div>
