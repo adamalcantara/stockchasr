@@ -27,6 +27,7 @@ function FindStock() {
   
     return (
       <div>
+
         <SearchForm getStockInfo={getStockInfo}/>
         {/* Ticker Symbol */}
         <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>

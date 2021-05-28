@@ -10,3 +10,4 @@ export default {
     return axios.get("https://api.polygon.io/v1/meta/symbols/" + searchValue + "/company?&apiKey=" + polyApi);
   },
 };
+
