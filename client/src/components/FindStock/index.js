@@ -6,10 +6,11 @@ function FindStock() {
 
  const [stock, setStock] = useState('')
 
- const getStock = () => {
-   API.findStock().then((res) => {
-     console.log(res);
-     setStock(res.data)
+ const getStock = (e) => {
+   const search = e.target.previousSibling.value
+   API.findStock(search).then((res) => {
+     console.log(res.data.data);
+     setStock(res.data.data)
    })
  }
 
@@ -19,7 +20,17 @@ function FindStock() {
         {/* <ul className="list-group">
           <li className="list-group-item">{this.state}</li>
         </ul> */}
-        <SearchForm getStock={getStock} />
+        <SearchForm getStock={getStock}/>
+        {stock.length > 0 ? <h1>{stock[0].symbol}</h1> : ''}
+        {stock.length > 0 ? <h1>{stock[0].exchange}</h1> : ''}
+        {/* {stock.length > 0 ? 
+            stock.map((shares) => (
+              <div>
+                <h1>{shares.symbol}</h1>
+              </div>
+            ))
+          
+        : ''} */}
       </div>
     );
 
