@@ -4,26 +4,44 @@ import SearchForm from "./SearchForm";
 
 function FindStock() {
 
- const [stock, setStock] = useState('')
+ const [stock, setStock] = useState({})
 
- const getStock = (e) => {
+//  const getStock = (e) => {
+//    const search = e.target.previousSibling.value
+//    API.findStock(search).then((res) => {
+//      console.log(res.data.data);
+//      setStock(res.data.data)
+//    })
+//  }
+
+
+ const getStockInfo = (e) => {
+   // how we are hooking into search input
    const search = e.target.previousSibling.value
-   API.findStock(search).then((res) => {
-     console.log(res.data.data);
-     setStock(res.data.data)
+   API.findInfo(search).then((res) => {
+     console.log(res.data);
+     // setting state to data 
+     setStock(res.data)
    })
  }
-
   
     return (
       <div>
-        {/* <ul className="list-group">
-          <li className="list-group-item">{this.state}</li>
-        </ul> */}
-        <SearchForm getStock={getStock}/>
-        <button>Add To Watchlist</button>
-        {stock.length > 0 ? <h1>{stock[0].symbol}</h1> : ''}
-        {stock.length > 0 ? <h1>{stock[0].exchange}</h1> : ''}
+
+        <SearchForm getStockInfo={getStockInfo}/>
+        {/* Ticker Symbol */}
+        <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
+        {/* Company Name */}
+        <h2>{stock.name}</h2>
+        {/* {stock.length > 0 ? <h4>CEO: {stock.ceo}</h4> : ''}
+       {stock.length > 0 ? <h5>Industry: {stock.industry}</h5>: ''}
+       {stock.length > 0 ? <h5>Exchange: {stock.exchange} ({stock.exchangeSymbol})</h5> : ''} */}
+       {/* Company Website */}
+        <a href={stock.url}>{stock.url}</a>
+       {/* {stock.length > 0 ? <h2>About</h2> : ''} */}
+       {/* Company Description */}
+        <p>{stock.description}</p>
+        {/* {stock.length > 0 ? <h2>{stock[0].exchange}</h2> : ''} */}
       </div>
     );
     
