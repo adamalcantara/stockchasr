@@ -23,17 +23,19 @@ function FindStock() {
         <SearchForm getStock={getStock}/>
         {stock.length > 0 ? <h1>{stock[0].symbol}</h1> : ''}
         {stock.length > 0 ? <h1>{stock[0].exchange}</h1> : ''}
-        {/* {stock.length > 0 ? 
-            stock.map((shares) => (
-              <div>
-                <h1>{shares.symbol}</h1>
-              </div>
-            ))
-          
-        : ''} */}
       </div>
     );
+    
+  }
+  
+  export default FindStock
 
-}
-
-export default FindStock
+  // Map Method
+  {/* {stock.length > 0 ? 
+      stock.map((shares) => (
+        <div>
+          <h1>{shares.symbol}</h1>
+        </div>
+      ))
+    
+  : ''} */}
