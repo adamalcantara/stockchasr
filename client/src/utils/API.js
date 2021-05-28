@@ -8,6 +8,17 @@ export default {
   },
   findInfo: function (searchValue) {
     return axios.get("https://api.polygon.io/v1/meta/symbols/" + searchValue + "/company?&apiKey=" + polyApi);
+  
   },
+  getWatchlist: function () {
+    return axios.get('/api/users/watchlist')
+  },
+  addToWatchlist: function (stock) {
+    // safeguards from sending empty request to the backend
+    if (!Object.keys(stock).length){
+      return;
+    }
+    return axios.post('/api/users/watchlist', stock)
+  }
 };
 

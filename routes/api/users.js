@@ -27,4 +27,9 @@ router
   .route("/ping")
   .get(usersController.test);
 
+router
+  .route("/watchlist")
+  .get(usersController.getWatchList)
+  .post(usersController.addToWatchlist)
+  
 module.exports = router;

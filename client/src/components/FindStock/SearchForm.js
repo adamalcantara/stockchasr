@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useRef} from 'react'
+import API from '../../utils/API' 
 
-const SearchForm = ({ getStock, getStockInfo }) => {
+const SearchForm = ({ stock, getStockInfo }) => {
+    const input = useRef()
     return (
         <div>
             <h1>You have reached the FindStock element</h1>
-            <input type='text' placeholder='Search'></input>
-            <button className="ml-3 btn btn-primary" onClick={(e) => getStockInfo(e)} >Search</button>
+            <input type='text' placeholder='Search' ref={input}></input>
+            <button onClick={()=> API.addToWatchlist(stock)}>Add To Watchlist</button>
+            <button className="ml-3 btn btn-primary" onClick={(e) => getStockInfo(input.current.value)} >Search</button>
         </div>
     )
 }

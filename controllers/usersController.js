@@ -1,5 +1,5 @@
-const Account = require("../models/account");
 const passport = require('passport');
+const {Watchlist, Account} = require("../models");
 
 module.exports = {
 	getUser: function (req, res) {
@@ -53,6 +53,8 @@ module.exports = {
 			if (err) {
 				return next(err);
 			}
+			req.session.username = req.user.username
+			req.session.user_id = req.user._id
 			console.log('The three codemigos are here to save the day')
 			console.log(`User at login ${req.user.username}`);
 
@@ -76,23 +78,33 @@ module.exports = {
 
 
 	//user clicks button, stock symbol gets put in database. Watchlist data appends to dashboard page. 
-	watchlist: function (req, res, next) {
+	addToWatchlist: function (req, res) {
 		console.log(`This is whipped cream goin in the coffee goin on right here guys ${req.statusCode}`);
 		// update state user string for the symbol
-		this.setState({
-			symbol: String,
-		});
-		//create API in new method
-		
-		//that route calls this controller
-
-		// call the model and save to that model
-
-		//push to array with query
-
-		//custom err if user selects an already followed stock
-
+		Watchlist.create(req.body)
+		.then (data => {
+			return Account.findOneAndUpdate({_id: req.session.user_id}, {$addToSet: {watchlist: data}}, {new:true} )
+		}).then(data => {
+			res.json(data)
+			console.log(data)
+		}).catch (err => {
+			console.log(err)
+			res.json(err)
+		})
 		res.status(200).send("Sounds good, John!");
 	},
 
+	getWatchList: function (req, res) {
+		console.log(`This is getting the watchlist ${req.statusCode}`);
+		Account.findOne({_id: req.session.user_id})
+		.then(data => {
+			res.json(data.watchlist)
+		}) .catch (err => {
+			console.log(err)
+			res.json(err)
+		})
+		// getWatchlist.create(req.body)
+
+		
+	}
 };
