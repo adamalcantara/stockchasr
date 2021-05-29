@@ -9,7 +9,9 @@ module.exports = {
 		if (user) {
 			Account.findOne({ username: user })
 				.then(userData => {
+					console.log("This is the user data right here, people!")
 					console.log(userData);
+					console.log("This is the end of the user data.")
 					const { _id, username } = userData;
 					return res.status(200).json({
 						id: _id,
@@ -83,10 +85,15 @@ module.exports = {
 		// update state user string for the symbol
 		Watchlist.create(req.body)
 		.then (data => {
-			return Account.findOneAndUpdate({_id: req.session.user_id}, {$addToSet: {watchlist: data}}, {new:true} )
-		}).then(data => {
-			res.json(data)
+			console.log("congratulations, you did it, ya filthy animal")
 			console.log(data)
+			console.log("We should have console logged data already")
+			return Account.findOneAndUpdate({_id: req.session.user_id}, {$addToSet: {watchlist: data}}, {new:true} )
+			
+			
+		// }).then(data => {
+		// 	res.json(data)
+		// 	console.log(data)
 		}).catch (err => {
 			console.log(err)
 			res.json(err)
