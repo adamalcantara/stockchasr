@@ -1,6 +1,7 @@
 const passport = require('passport');
 const {Watchlist, Account} = require("../models");
 
+
 module.exports = {
 	getUser: function (req, res) {
 
