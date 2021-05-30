@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
 import SearchForm from "./SearchForm";
+import Chart from "../Chart";
 function FindStock() {
 
   const [stock, setStock] = useState({})
@@ -14,18 +15,18 @@ function FindStock() {
   //  }
   const getStockNews = (search) => {
     API.findNews(search).then((res) => {
-      console.log('This is the payload --')
-      console.log(res.data);
-      console.log('This is the end of the payload --')
-      console.log('Title of first index---');
-      console.log(res.data.results[0].title);
-      console.log('end of first index---');
-      // console.log(res.data.results);
-      // const results = res.data.results[0].title;
-      // console.log(results)
-      // const newsList = results.map((d) => <li key={d.title}>{d.title}</li>);
-      // console.log(newsList)
-      setNews(res.data)
+      // console.log('This is the payload --')
+      // console.log(res.data);
+      // console.log('This is the end of the payload --')
+      // console.log('Title of first index---');
+      // console.log(res.data.results[0].title);
+      // console.log('end of first index---');
+      // // console.log(res.data.results);
+      // // const results = res.data.results[0].title;
+      // // console.log(results)
+      // // const newsList = results.map((d) => <li key={d.title}>{d.title}</li>);
+      // // console.log(newsList)
+      // setNews(res.data)
     })
   }
 
@@ -50,6 +51,7 @@ function FindStock() {
       <SearchForm getStockInfo={getStockInfo} stock={stock} getStockNews={getStockNews} news={news} />
       {/* Ticker Symbol */}
       <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
+      <Chart />
       {/* Company Name */}
       <h2>{stock.name}</h2>
       <h4>{stock.ceo}</h4>
@@ -69,13 +71,3 @@ function FindStock() {
 }
 
 export default FindStock
-
-// Map Method
-{/* {stock.length > 0 ? 
-      stock.map((shares) => (
-        <div>
-          <h1>{shares.symbol}</h1>
-        </div>
-      ))
-    
-  : ''} */}
