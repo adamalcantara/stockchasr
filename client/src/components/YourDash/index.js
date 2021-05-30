@@ -1,22 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 
 const YourDash = () => {
-    const [watchlist, setWatchlist] = useState({})
+  const [watchlist, setWatchlist] = useState({});
 
-    const watchlistData = () => {
-        API.getWatchlist().then((res) => {
-            console.log(res.data)
-            setWatchlist(res.data)
-        })
-    }
+  useEffect(() => {
+    API.getWatchlist().then((res) => {
+      console.log(res.data);
+    //   setWatchlist(res.data);
+      console.log(res.data[0].symbol);
+      var watchlistSymbol = [];
+      console.log("This is the watchlist");
+      console.log(watchlistSymbol);
+      for (var i = 0; i < res.data.length; i++) {
+        watchlistSymbol.push(res.data[i].symbol);
+      }
+      setWatchlist(watchlistSymbol)
+    });
+  }, []);
 
-    return (
-        <div>
-            <h1>You have reached Your Dashboard</h1>
-            <button onClick={watchlistData}>Click Here</button>
-        </div>
-    )
-}
+  console.log(watchlist);
 
-export default YourDash
+  return (
+    <div>
+      <h1>You have reached Your Dashboard</h1>
+      <table>
+        <tbody>
+        
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default YourDash;
