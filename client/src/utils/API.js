@@ -19,6 +19,9 @@ export default {
       return;
     }
     return axios.post('/api/users/watchlist', stock)
+  },
+  findNews: function(searchValue) {
+    return axios.get('https://api.polygon.io/v2/reference/news?limit=1&order=descending&sort=published_utc&ticker=' + searchValue + '&published_utc.gte=2021-04-26&apiKey=' + polyApi)
   }
 };
 
