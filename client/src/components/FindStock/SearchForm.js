@@ -1,7 +1,7 @@
 import React, {useRef} from 'react'
 import API from '../../utils/API' 
 
-const SearchForm = ({ stock, getStockInfo }) => {
+const SearchForm = ({ stock, getStockInfo, getStockNews }) => {
     const input = useRef()
     return (
         <div>
