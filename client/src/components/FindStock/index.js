@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
 import SearchForm from "./SearchForm";
+import Chart from "../Chart"
 
 function FindStock() {
 
@@ -31,6 +32,7 @@ function FindStock() {
         <SearchForm getStockInfo={getStockInfo} stock={stock}/>
         {/* Ticker Symbol */}
         <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
+        <Chart />
         {/* Company Name */}
         <h2>{stock.name}</h2>
         <h4>{stock.ceo}</h4>
