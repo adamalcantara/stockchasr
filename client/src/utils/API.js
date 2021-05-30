@@ -4,7 +4,8 @@ const polyApi = 'ed_5Kc2Wrznyf4U8Upim_3pyVBqDKnXS';
 
 export default {
   findStock: function (searchValue) {
-    return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + ApiKey + "&symbols=" + searchValue + "&interval=1min");
+    // return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + ApiKey + "&symbols=" + searchValue + "&interval=1min");
+    return axios.get("https://api.marketstack.com/v1/eod?access_key=" + ApiKey + "&symbols=" + searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")
   },
   findInfo: function (searchValue) {
     return axios.get("https://api.polygon.io/v1/meta/symbols/" + searchValue + "/company?&apiKey=" + polyApi);

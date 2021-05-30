@@ -5,6 +5,7 @@ import Chart from "../Chart";
 function FindStock() {
 
   const [stock, setStock] = useState({})
+  const [market, setMarket] = useState({})
   const [news, setNews] = useState({})
   //  const getStock = (e) => {
   //    const search = e.target.previousSibling.value
@@ -31,19 +32,32 @@ function FindStock() {
   }
 
   
- 
+  // let stockData = [];
+  // console.log(stockData);
 
   const getStockInfo = (search) => {
     // how we are hooking into search input
     //  const search = e.target.previousSibling.value
+    getMarketInfo(search)
     getStockNews(search)
     API.findInfo(search).then((res) => {
       console.log(res.data);
+      // stockData.push(res.data);
       // setting state to data 
       setStock(res.data)
     })
 
   }
+
+  const getMarketInfo = (search) => {
+    API.findStock(search).then((res) => {
+      console.log("This is the MARKET data")
+      console.log(res.data);
+      setMarket(res.data);
+    })
+  }
+
+
 
   return (
     <div>
@@ -51,7 +65,7 @@ function FindStock() {
       <SearchForm getStockInfo={getStockInfo} stock={stock} getStockNews={getStockNews} news={news} />
       {/* Ticker Symbol */}
       <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
-      <Chart />
+      <Chart getMarketInfo={getMarketInfo} market={market} />
       {/* Company Name */}
       <h2>{stock.name}</h2>
       <h4>{stock.ceo}</h4>
