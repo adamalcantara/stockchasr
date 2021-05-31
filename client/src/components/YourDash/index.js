@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 
 const YourDash = () => {
-  const [watchlist, setWatchlist] = useState({});
+  const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
     API.getWatchlist().then((res) => {
@@ -24,12 +24,21 @@ const YourDash = () => {
   return (
     <div>
       <h1>You have reached Your Dashboard</h1>
-      <table>
-        <tbody>
-        
-        </tbody>
-      </table>
+      
+        <div> </div>
+            <table id="watch-list">
+                <tbody>
+                    {watchlist.map((stock) => {
+                        return(
+                        <tr>
+                            {stock}
+                        </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
     </div>
+  
   );
 };
 
