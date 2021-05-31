@@ -70,6 +70,7 @@ function FindStock() {
     API.findStock(search).then((res) => {
       console.log("This is the CHART data")
       console.log(res.data);
+
     })
   }
 

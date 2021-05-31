@@ -12,7 +12,10 @@ const YourDash = () => {
       console.log("This is the watchlist");
       console.log(watchlistSymbol);
       for (var i = 0; i < res.data.length; i++) {
-        watchlistSymbol.push(res.data[i].symbol);
+        watchlistSymbol.push({
+          symbol: res.data[i].symbol,
+          ceo: res.data[i].ceo
+        });
       }
       setWatchlist(watchlistSymbol)
     });
@@ -30,7 +33,12 @@ const YourDash = () => {
                     {watchlist.map((stock) => {
                         return(
                         <tr>
-                            {stock}
+                          <td>
+                          {stock.symbol}
+                          </td>
+                          <td>
+                          {stock.ceo}
+                          </td>
                         </tr>
                         )
                     })}
