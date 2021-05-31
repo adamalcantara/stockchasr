@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import CanvasJSReact from '../../assets/canvasjs.stock.react';
+import API from "../../utils/API";
+import SearchForm from "../FindStock/SearchForm"
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 
@@ -7,20 +9,21 @@ var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 class Chart extends Component {
     constructor(props) {
         super(props);
-        this.state = { dataPoints: [], isLoaded: false };
+        this.state = { dataPoints: [], isLoaded: true };
     }
 
-    componentDidMount() {
+    componentDidMount(search) {
         //Reference: https://reactjs.org/docs/faq-ajax.html#example-using-ajax-results-to-set-local-state
-        fetch("https://canvasjs.com/data/gallery/react/btcusd2017-18.json")
+        // fetch("https://canvasjs.com/data/gallery/react/btcusd2017-18.json")
+        fetch("https://api.marketstack.com/v1/eod?access_key=d8fc6a7a05fe981d498316ed91194d9d&symbols=AAPL&date_from=2000-05-20&date_to=2021-05-30&limit=365")
             .then(res => res.json())
             .then(
                 (data) => {
                     var dps = [];
-                    for (var i = 0; i < data.length; i++) {
+                    for (var i = 0; i < data.data.length; i++) {
                         dps.push({
-                            x: new Date(data[i].date),
-                            y: Number(data[i].close)
+                            x: new Date(data.data[i].date),
+                            y: Number(data.data[i].close)
                         });
                     }
                     this.setState({
@@ -32,11 +35,6 @@ class Chart extends Component {
     }
 
     render() {
-        console.log("These are the props:")
-        console.log(this.props);
-        console.log("Printing something specific")
-        console.log(this.props.market.data)
-        // console.log(this.props.stock.ceo);
         const options = {
             title: {
                 text: "React StockChart with Spline Area Chart"
