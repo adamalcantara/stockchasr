@@ -10,11 +10,12 @@ class Chart extends Component {
     constructor(props) {
         super(props);
         this.state = { dataPoints: [], isLoaded: true };
+        console.log("These are the props")
+        console.log(this.props)
     }
 
     componentDidMount(search) {
         //Reference: https://reactjs.org/docs/faq-ajax.html#example-using-ajax-results-to-set-local-state
-        // fetch("https://canvasjs.com/data/gallery/react/btcusd2017-18.json")
         fetch("https://api.marketstack.com/v1/eod?access_key=d8fc6a7a05fe981d498316ed91194d9d&symbols=AAPL&date_from=2000-05-20&date_to=2021-05-30&limit=365")
             .then(res => res.json())
             .then(
