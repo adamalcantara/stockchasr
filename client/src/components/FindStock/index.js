@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import API from "../../utils/API";
 import SearchForm from "./SearchForm";
 import Chart from "../Chart";
+
 function FindStock() {
 
   const [stock, setStock] = useState({})

@@ -8,7 +8,6 @@ const YourDash = () => {
     API.getWatchlist().then((res) => {
       console.log(res.data);
     //   setWatchlist(res.data);
-      console.log(res.data[0].symbol);
       var watchlistSymbol = [];
       console.log("This is the watchlist");
       console.log(watchlistSymbol);
