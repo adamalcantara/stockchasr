@@ -11,7 +11,7 @@ class Chart extends Component {
         super(props);
         this.state = { dataPoints: [], isLoaded: true };
         console.log("These are the props")
-        console.log(this.props)
+        console.log(this.props.searchValue)
     }
 
     componentDidMount(search) {
@@ -34,6 +34,32 @@ class Chart extends Component {
                 }
             )
     }
+
+    // componentDidMount() {
+    //     this.getItems()
+    // }
+
+    // getItems() {
+    //     this.setState({ 'isLoading': true });
+    //     API.findChartInfo().then(items => this.setState({ items, 'isLoading': false }))
+    //         // .catch(error => this.setState({ error, isLoading: false }));
+    //         .then(res => res.json())
+    //         .then(
+    //             (data) => {
+    //                 var dps = [];
+    //                 for (var i = 0; i < data.data.length; i++) {
+    //                     dps.push({
+    //                         x: new Date(data.data[i].date),
+    //                         y: Number(data.data[i].close)
+    //                     });
+    //                 }
+    //                 this.setState({
+    //                     isLoaded: true,
+    //                     dataPoints: dps
+    //                 });
+    //             }
+    //         )
+    // }
 
     render() {
         const options = {
