@@ -7,6 +7,9 @@ function FindStock() {
   const [stock, setStock] = useState({})
   const [market, setMarket] = useState({})
   const [news, setNews] = useState({})
+
+  //Set the state as false by default
+
   //  const getStock = (e) => {
   //    const search = e.target.previousSibling.value
   //    API.findStock(search).then((res) => {
@@ -38,15 +41,15 @@ function FindStock() {
   const getStockInfo = (search) => {
     // how we are hooking into search input
     //  const search = e.target.previousSibling.value
-    getMarketInfo(search)
-    getStockNews(search)
+    getMarketInfo(search);
+    getChartInfo(search);
+    getStockNews(search);
     API.findInfo(search).then((res) => {
       console.log(res.data);
       // stockData.push(res.data);
       // setting state to data 
       setStock(res.data)
     })
-
   }
 
   const getMarketInfo = (search) => {
@@ -54,6 +57,19 @@ function FindStock() {
       console.log("This is the MARKET data")
       console.log(res.data);
       setMarket(res.data);
+    })
+  }
+
+  const getChartInfo = (search) => {
+    API.findStock(search).then((res) => {
+      console.log("This is the CHART data")
+      console.log(res.data);
+      console.log(res.data.data[99].open)
+      var chartData = [];
+      for (var i = 0; i < res.data.length; i++) {
+        chartData.push(res.data.data[0].date)
+      }
+      console.log(chartData);
     })
   }
 
