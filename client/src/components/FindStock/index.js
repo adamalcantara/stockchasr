@@ -11,10 +11,7 @@ function FindStock() {
   const [searchValue, setSearchValue] = useState("");
   const [isSearched, setIsSearched] = useState(false);
 
-  const handleInputChange = (e) => {
-    setSearchValue(e.target.value)
-  }
-
+  //console.log the status of isSearched (should be false by default and changed to true once the getStockInfo function is called onClick of search button)
   console.log(isSearched)
 
   //  const getStock = (e) => {
@@ -41,30 +38,31 @@ function FindStock() {
     })
   }
 
-
-  // let stockData = [];
-  // console.log(stockData);
-
+  //Getting the stock info
   const getStockInfo = (search) => {
-    // how we are hooking into search input
-    //  const search = e.target.previousSibling.value
-    getMarketInfo(search);
-    getChartInfo(search);
+    // getMarketInfo(search);
+    // getChartInfo(search);
+    //Calling the getStockNews function
     getStockNews(search);
+    //Calling the function from the API file, then console logging the result
     API.findInfo(search).then((res) => {
       console.log(res.data);
-      // stockData.push(res.data);
       // setting state to data 
       setStock(res.data)
+      console.log(res.data.symbol)
+      setSearchValue(res.data.symbol)
     })
     setIsSearched(true)
   }
 
+  //Getting the market info
   const getMarketInfo = (search) => {
     API.findStock(search).then((res) => {
       console.log("This is the MARKET data")
       console.log(res.data);
       setMarket(res.data);
+      console.log("MARKET DATA LOG")
+      console.log(market)
     })
   }
 
@@ -73,19 +71,13 @@ function FindStock() {
       console.log("This is the CHART data")
       console.log(res.data);
 
-      var chartData = [];
-      for (var i = 0; i < res.data.length; i++) {
-        chartData.push(res.data.data[0].date)
-      }
-      console.log(chartData);
     })
   }
 
   return (
     <div>
-
+      {/* Search form element */}
       <SearchForm
-        handleInputChange={handleInputChange}
         value={searchValue}
         getStockInfo={getStockInfo}
         stock={stock}
@@ -95,18 +87,16 @@ function FindStock() {
         setIsSearched={setIsSearched}
       />
 
+      {/* All elements below only render when isSearched is true */}
       {isSearched ? <button onClick={() => API.addToWatchlist(stock)}>Add To Watchlist</button> : null}
-      {/* Ticker Symbol */}
       {isSearched ? <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1> : <h1>Search For A Stock</h1>}
-      {isSearched ? <Chart handleInputChange={handleInputChange} value={searchValue} getMarketInfo={getMarketInfo} market={market} /> : null}
-      {/* Company Name */}
+      {isSearched ? <Chart setSearchValue={setSearchValue} searchValue={searchValue} market={market} /> : null}
       
       {isSearched ? <div className="stockData">
         <h2>{stock.name}</h2>
         <h4>{stock.ceo}</h4>
         <h5>{stock.industry}</h5>
         <h5>{stock.exchange} {stock.exchangeSymbol}</h5>
-        {/* Company Website */}
         <a href={stock.url}>{stock.url}</a>
         {/* {stock.length > 0 ? <h2>About</h2> : ''} */}
         {/* Company Description */}
