@@ -7,7 +7,7 @@ const SearchForm = ({ stock, getStockInfo, getStockNews }) => {
         <div>
             <h1>You have reached the FindStock element</h1>
             <input type='text' placeholder='Search' ref={input}></input>
-            <button onClick={()=> API.addToWatchlist(stock)}>Add To Watchlist</button>
+            
             <button className="ml-3 btn btn-primary" onClick={(e) => getStockInfo(input.current.value)} >Search</button>
         </div>
     )

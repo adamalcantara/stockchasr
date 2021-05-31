@@ -63,6 +63,7 @@ function FindStock() {
     <div>
 
       <SearchForm getStockInfo={getStockInfo} stock={stock} getStockNews={getStockNews} news={news} />
+      <button onClick={()=> API.addToWatchlist(stock)}>Add To Watchlist</button>
       {/* Ticker Symbol */}
       <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
       <Chart getMarketInfo={getMarketInfo} market={market} />
