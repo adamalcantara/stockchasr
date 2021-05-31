@@ -41,7 +41,7 @@ function FindStock() {
     })
   }
 
-  
+
   // let stockData = [];
   // console.log(stockData);
 
@@ -80,35 +80,39 @@ function FindStock() {
       console.log(chartData);
     })
   }
-  
+
   return (
     <div>
 
-      <SearchForm 
-      handleInputChange={handleInputChange} 
-      value={searchValue} 
-      getStockInfo={getStockInfo} 
-      stock={stock} 
-      getStockNews={getStockNews} 
-      news={news}
-      isSearched={isSearched}
-      setIsSearched={setIsSearched}
+      <SearchForm
+        handleInputChange={handleInputChange}
+        value={searchValue}
+        getStockInfo={getStockInfo}
+        stock={stock}
+        getStockNews={getStockNews}
+        news={news}
+        isSearched={isSearched}
+        setIsSearched={setIsSearched}
       />
-      
-      {isSearched ? <button onClick={()=> API.addToWatchlist(stock)}>Add To Watchlist</button> : null}
+
+      {isSearched ? <button onClick={() => API.addToWatchlist(stock)}>Add To Watchlist</button> : null}
       {/* Ticker Symbol */}
-      {isSearched ? <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1> : null}
+      {isSearched ? <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1> : <h1>Search For A Stock</h1>}
       {isSearched ? <Chart handleInputChange={handleInputChange} value={searchValue} getMarketInfo={getMarketInfo} market={market} /> : null}
       {/* Company Name */}
-      {isSearched ? <h2>{stock.name}</h2> : null}
-      {isSearched ? <h4>{stock.ceo}</h4> : null}
-      {isSearched ? <h5>{stock.industry}</h5> : null}
-      {isSearched ? <h5>{stock.exchange} {stock.exchangeSymbol}</h5> : null}
-      {/* Company Website */}
-      {isSearched ? <a href={stock.url}>{stock.url}</a> : null}
-      {/* {stock.length > 0 ? <h2>About</h2> : ''} */}
-      {/* Company Description */}
-      {isSearched ? <p>{stock.description}</p> : null}
+      
+      {isSearched ? <div className="stockData">
+        <h2>{stock.name}</h2>
+        <h4>{stock.ceo}</h4>
+        <h5>{stock.industry}</h5>
+        <h5>{stock.exchange} {stock.exchangeSymbol}</h5>
+        {/* Company Website */}
+        <a href={stock.url}>{stock.url}</a>
+        {/* {stock.length > 0 ? <h2>About</h2> : ''} */}
+        {/* Company Description */}
+        <p>{stock.description}</p>
+      </div> : null}
+
       {/* {stock.length > 0 ? <h2>{stock[0].exchange}</h2> : ''} */}
       {/* <h1>{news.author}</h1> */}
       {/* <p>{news.results}</p> */}
