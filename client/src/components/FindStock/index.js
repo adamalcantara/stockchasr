@@ -72,7 +72,7 @@ function FindStock() {
     API.findStock(search).then((res) => {
       console.log("This is the CHART data")
       console.log(res.data);
-      console.log(res.data.data[99].open)
+
       var chartData = [];
       for (var i = 0; i < res.data.length; i++) {
         chartData.push(res.data.data[0].date)
