@@ -5,11 +5,17 @@ import Chart from "../Chart";
 
 function FindStock() {
 
-  const [stock, setStock] = useState({})
-  const [market, setMarket] = useState({})
-  const [news, setNews] = useState({})
+  const [stock, setStock] = useState({});
+  const [market, setMarket] = useState({});
+  const [news, setNews] = useState({});
+  const [searchValue, setSearchValue] = useState("");
+  const [isSearched, setIsSearched] = useState(false);
 
-  //Set the state as false by default
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value)
+  }
+
+  console.log(isSearched)
 
   //  const getStock = (e) => {
   //    const search = e.target.previousSibling.value
@@ -51,6 +57,7 @@ function FindStock() {
       // setting state to data 
       setStock(res.data)
     })
+    setIsSearched(true)
   }
 
   const getMarketInfo = (search) => {
@@ -73,27 +80,35 @@ function FindStock() {
       console.log(chartData);
     })
   }
-
-
-
+  
   return (
     <div>
 
-      <SearchForm getStockInfo={getStockInfo} stock={stock} getStockNews={getStockNews} news={news} />
-      <button onClick={()=> API.addToWatchlist(stock)}>Add To Watchlist</button>
+      <SearchForm 
+      handleInputChange={handleInputChange} 
+      value={searchValue} 
+      getStockInfo={getStockInfo} 
+      stock={stock} 
+      getStockNews={getStockNews} 
+      news={news}
+      isSearched={isSearched}
+      setIsSearched={setIsSearched}
+      />
+      
+      {isSearched ? <button onClick={()=> API.addToWatchlist(stock)}>Add To Watchlist</button> : null}
       {/* Ticker Symbol */}
-      <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1>
-      <Chart getMarketInfo={getMarketInfo} market={market} />
+      {isSearched ? <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1> : null}
+      {isSearched ? <Chart handleInputChange={handleInputChange} value={searchValue} getMarketInfo={getMarketInfo} market={market} /> : null}
       {/* Company Name */}
-      <h2>{stock.name}</h2>
-      <h4>{stock.ceo}</h4>
-      <h5>{stock.industry}</h5>
-      <h5>{stock.exchange} {stock.exchangeSymbol}</h5>
+      {isSearched ? <h2>{stock.name}</h2> : null}
+      {isSearched ? <h4>{stock.ceo}</h4> : null}
+      {isSearched ? <h5>{stock.industry}</h5> : null}
+      {isSearched ? <h5>{stock.exchange} {stock.exchangeSymbol}</h5> : null}
       {/* Company Website */}
-      <a href={stock.url}>{stock.url}</a>
+      {isSearched ? <a href={stock.url}>{stock.url}</a> : null}
       {/* {stock.length > 0 ? <h2>About</h2> : ''} */}
       {/* Company Description */}
-      <p>{stock.description}</p>
+      {isSearched ? <p>{stock.description}</p> : null}
       {/* {stock.length > 0 ? <h2>{stock[0].exchange}</h2> : ''} */}
       {/* <h1>{news.author}</h1> */}
       {/* <p>{news.results}</p> */}
