@@ -9,9 +9,11 @@ var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 class Chart extends Component {
     constructor(props) {
         super(props);
-        this.state = { dataPoints: [], isLoaded: true };
+        this.state = { dataPoints: [], isLoaded: false };
+        // console.log("This is the state")
+        // console.log(this.state)
         console.log("These are the props")
-        console.log(this.props.searchValue)
+        console.log(this.props.chartData)
     }
 
     componentDidMount(search) {
@@ -27,13 +29,44 @@ class Chart extends Component {
                             y: Number(data.data[i].close)
                         });
                     }
+                    console.log("DUMMY CHART DATA RIGHT HERE")
+                    console.log(dps)
                     this.setState({
                         isLoaded: true,
                         dataPoints: dps
                     });
+                    console.log("This is the state")
+                    console.log(this.state)
                 }
             )
     }
+
+    componentDidMount() {
+        var chartDataArray = this.props.chartData
+        console.log("LEEEERRRRROOOOOOOOYYYYYY JEEENKIIINNNNNSSSSSS")
+        console.log(chartDataArray)
+        this.setState({
+            isLoaded: true,
+            dataPoints: chartDataArray
+        })
+        console.log("This is the state")
+        console.log(this.state)
+    }
+
+    // getItems() {
+    //     var chartDataArray = this.props.chartData
+    //     console.log("LEEEERRRRROOOOOOOOYYYYYY JEEENKIIINNNNNSSSSSS")
+    //     console.log(chartDataArray)
+    //     .then(
+    //     this.setState({
+    //         isLoaded: true,
+    //         dataPoints: chartDataArray
+    //     }))
+    //     console.log("This is the state")
+    //     console.log(this.state)
+    // }
+
+    
 
     // componentDidMount() {
     //     this.getItems()
