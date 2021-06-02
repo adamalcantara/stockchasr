@@ -1,10 +1,13 @@
-import React, {useRef, useContext} from "react";
+import React, {useRef, useContext } from "react";
 import API from "../../utils/API";
 import { UserContext } from "../../utils/UserContext"
 
 
 function CommentForm({ searchValue }) {
     const input = useRef()
+
+    console.log("The hills are a live with the sound of music")
+    console.log(searchValue)
 
     const [user, dispatch] = useContext(UserContext);
 
@@ -15,7 +18,7 @@ function CommentForm({ searchValue }) {
             <button className="ml-3 btn btn-primary" onClick={(e) => API.addComment({
                 comments: input.current.value,
                 username: user.username,
-                symbol: searchValue
+                stock: searchValue
                 })}>Add Comment</button>
         </div>
     )
