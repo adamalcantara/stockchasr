@@ -35,6 +35,14 @@ const YourDash = () => {
       
         <div> </div>
             <table id="watch-list">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Close</th>
+                    <th>High</th>
+                    <th>Low</th>
+                </tr>
+            </thead>
                 <tbody>
                     {watchlist.map((stock) => {
                         return(
