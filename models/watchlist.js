@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const watchlistSchema = new Schema({
     symbol: String,
-    ceo: String,
+    close: Number,
+    high: Number,
+    low: Number
 });
 
 const Watchlist = mongoose.model('watchlist', watchlistSchema);

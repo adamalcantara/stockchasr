@@ -17,7 +17,9 @@ const YourDash = () => {
       for (var i = 0; i < res.data.length; i++) {
         watchlistSymbol.push({
           symbol: res.data[i].symbol,
-          ceo: res.data[i].ceo
+          close: res.data[i].close,
+          high: res.data[i].high,
+          low: res.data[i].low
         });
       }
       //Set the state of watchlist to the array above
@@ -33,6 +35,14 @@ const YourDash = () => {
       
         <div> </div>
             <table id="watch-list">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Close</th>
+                    <th>High</th>
+                    <th>Low</th>
+                </tr>
+            </thead>
                 <tbody>
                     {watchlist.map((stock) => {
                         return(
@@ -41,7 +51,13 @@ const YourDash = () => {
                           {stock.symbol}
                           </td>
                           <td>
-                          {stock.ceo}
+                          {stock.close}
+                          </td>
+                          <td>
+                          {stock.high}
+                          </td>
+                          <td>
+                          {stock.low}
                           </td>
                         </tr>
                         )

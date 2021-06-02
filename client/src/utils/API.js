@@ -18,6 +18,9 @@ export default {
     return axios.get("https://api.polygon.io/v1/meta/symbols/" + searchValue + "/company?&apiKey=" + polyApi);
   
   },
+  findDailyInfo: function (searchValue) {
+    return axios.get("https://api.polygon.io/v1/open-close/" + searchValue + "/2021-06-01?unadjusted=true&apiKey=" + polyApi)
+  },
   //Get the watch list from the database so that it can be put on the page
   getWatchlist: function () {
     return axios.get('/api/users/watchlist')
