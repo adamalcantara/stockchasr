@@ -10,6 +10,7 @@ function FindStock() {
   const [isSearched, setIsSearched] = useState(false);
   const [chartData, setChartData] = useState([])
   const [haveChartData, setHaveChartData] = useState([])
+  const [dailyData, setDailyData] = useState({})
 
   //console.log the status of isSearched (should be false by default and changed to true once the getStockInfo function is called onClick of search button)
   console.log(isSearched)
@@ -20,6 +21,7 @@ function FindStock() {
     //Call the getMarketInfo function
     getMarketInfo(searchValue);
     getChartInfo(searchValue);
+    getDailyInfo(searchValue);
     //Calling the function from the API file, then console logging the result
     API.findInfo(searchValue).then((res) => {
       console.log(res.data);
@@ -31,6 +33,15 @@ function FindStock() {
     })
     //Set the status of isSearched to true (This will make elements visible on the page)
     
+  }
+
+  const getDailyInfo = (search) => {
+    API.findDailyInfo(search).then((res) => {
+      console.log('This is the Daily Info')
+      console.log(res.data)
+
+      setDailyData(res.data)
+    })
   }
 
   const handleInputChange = e => {
@@ -94,7 +105,7 @@ function FindStock() {
       />
 
       {/* All elements below only render when isSearched is true */}
-      {isSearched ? <button onClick={() => API.addToWatchlist(stock)}>Add To Watchlist</button> : null}
+      {isSearched ? <button onClick={() => API.addToWatchlist(dailyData)}>Add To Watchlist</button> : null}
       {isSearched ? <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1> : <h1>Search For A Stock</h1>}
       
       {isSearched && chartData ? <Chart searchValue={searchValue} chartData={chartData} /> : "Loading..."}
