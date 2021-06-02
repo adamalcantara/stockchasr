@@ -13,12 +13,13 @@ class Chart extends Component {
         // console.log("This is the state")
         // console.log(this.state)
         console.log("These are the props")
-        console.log(this.props.chartData)
+        console.log(this.props)
     }
 
     componentDidMount(search) {
         //Reference: https://reactjs.org/docs/faq-ajax.html#example-using-ajax-results-to-set-local-state
-        fetch("https://api.marketstack.com/v1/eod?access_key=d8fc6a7a05fe981d498316ed91194d9d&symbols=AAPL&date_from=2000-05-20&date_to=2021-05-30&limit=365")
+        
+        fetch("https://api.marketstack.com/v1/eod?access_key=d8fc6a7a05fe981d498316ed91194d9d&symbols=" + this.props.searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")
             .then(res => res.json())
             .then(
                 (data) => {
@@ -41,60 +42,28 @@ class Chart extends Component {
             )
     }
 
-    componentDidMount() {
-        var chartDataArray = this.props.chartData
-        console.log("LEEEERRRRROOOOOOOOYYYYYY JEEENKIIINNNNNSSSSSS")
-        console.log(chartDataArray)
-        this.setState({
-            isLoaded: true,
-            dataPoints: chartDataArray
-        })
-        console.log("This is the state")
-        console.log(this.state)
-    }
-
-    // getItems() {
-    //     var chartDataArray = this.props.chartData
-    //     console.log("LEEEERRRRROOOOOOOOYYYYYY JEEENKIIINNNNNSSSSSS")
-    //     console.log(chartDataArray)
-    //     .then(
-    //     this.setState({
-    //         isLoaded: true,
-    //         dataPoints: chartDataArray
-    //     }))
-    //     console.log("This is the state")
-    //     console.log(this.state)
-    // }
-
-    
-
     // componentDidMount() {
     //     this.getItems()
     // }
 
     // getItems() {
-    //     this.setState({ 'isLoading': true });
-    //     API.findChartInfo().then(items => this.setState({ items, 'isLoading': false }))
-    //         // .catch(error => this.setState({ error, isLoading: false }));
-    //         .then(res => res.json())
-    //         .then(
-    //             (data) => {
-    //                 var dps = [];
-    //                 for (var i = 0; i < data.data.length; i++) {
-    //                     dps.push({
-    //                         x: new Date(data.data[i].date),
-    //                         y: Number(data.data[i].close)
-    //                     });
-    //                 }
-    //                 this.setState({
-    //                     isLoaded: true,
-    //                     dataPoints: dps
-    //                 });
-    //             }
-    //         )
+    //     console.log("DEFAULT DATA")
+    //     console.log(this.props.chartData)
+    //     var chartDataArray = this.props.chartData
+    //     console.log("LEEEERRRRROOOOOOOOYYYYYY JEEENKIIINNNNNSSSSSS")
+    //     console.log(chartDataArray)
+    
+    //     this.setState({
+    //         isLoaded: true,
+    //         dataPoints: chartDataArray
+    //     })
+        
     // }
 
     render() {
+        console.log("This is the state")
+        console.log(this.state)
+
         const options = {
             title: {
                 text: "React StockChart with Spline Area Chart"
@@ -147,6 +116,8 @@ class Chart extends Component {
         return (
             <div>
                 <div>
+                    {/* <p>{this.state.isLoaded && 'THIS STATE ISLOADED : TRUE'}</p>
+                    <p>{JSON.stringify(this.state.dataPoints)}</p> */}
                     {
                         // Reference: https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
                         this.state.isLoaded &&
