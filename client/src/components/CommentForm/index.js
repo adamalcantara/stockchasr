@@ -20,6 +20,7 @@ function CommentForm({ searchValue }) {
                 username: user.username,
                 stock: searchValue
                 })}>Add Comment</button>
+                <button onClick={(e) => API.getComment({searchValue})}>Get Comments</button>
         </div>
     )
 }

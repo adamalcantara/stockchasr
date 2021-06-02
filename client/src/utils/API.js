@@ -38,7 +38,12 @@ export default {
     return axios.get('https://api.polygon.io/v2/reference/news?limit=1&order=descending&sort=published_utc&ticker=' + searchValue + '&published_utc.gte=2021-04-26&apiKey=' + polyApi)
   },
   addComment: function (comment) {
+    console.log(comment)
     return axios.post('/api/comments/comment', comment)
   },
+  getComment: function ({searchValue}) {
+    console.log(searchValue)
+    return axios.get('/api/comments/comment/' + searchValue)
+  }
 };
 
