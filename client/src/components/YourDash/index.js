@@ -14,12 +14,12 @@ const YourDash = () => {
       console.log("This is the watchlist");
       console.log(watchlistSymbol);
       //Loop over the data and push the symbol and CEO name (temporary) into the empty array above.
-      for (var i = 0; i < res.data.length; i++) {
-        watchlistSymbol.push({
-          symbol: res.data[i].symbol,
-          ceo: res.data[i].ceo
-        });
-      }
+      // for (var i = 0; i < res.data.length; i++) {
+      //   watchlistSymbol.push({
+      //     symbol: res.data[i].symbol,
+      //     ceo: res.data[i].ceo
+      //   });
+      // }
       //Set the state of watchlist to the array above
       setWatchlist(watchlistSymbol)
     });
