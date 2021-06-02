@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import SearchForm from "./SearchForm";
 import Chart from "../Chart";
+import CommentForm from "../CommentForm";
 
 function FindStock() {
   const [stock, setStock] = useState({});
@@ -47,6 +48,8 @@ function FindStock() {
   const handleInputChange = e => {
     setSearchValue(e.target.value)
   }
+
+  useEffect(() => console.log(searchValue), [searchValue]);
 
   //Getting the market info
   const getMarketInfo = (search) => {
@@ -118,6 +121,7 @@ function FindStock() {
         <a href={stock.url}>{stock.url}</a>
         <p>{stock.description}</p>
       </div> : null}
+      {isSearched ? <CommentForm searchValue={searchValue} />: ""}
     </div>
   );
 
