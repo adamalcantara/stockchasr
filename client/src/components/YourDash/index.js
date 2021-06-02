@@ -14,12 +14,14 @@ const YourDash = () => {
       console.log("This is the watchlist");
       console.log(watchlistSymbol);
       //Loop over the data and push the symbol and CEO name (temporary) into the empty array above.
-      // for (var i = 0; i < res.data.length; i++) {
-      //   watchlistSymbol.push({
-      //     symbol: res.data[i].symbol,
-      //     ceo: res.data[i].ceo
-      //   });
-      // }
+      for (var i = 0; i < res.data.length; i++) {
+        watchlistSymbol.push({
+          symbol: res.data[i].symbol,
+          close: res.data[i].close,
+          high: res.data[i].high,
+          low: res.data[i].low
+        });
+      }
       //Set the state of watchlist to the array above
       setWatchlist(watchlistSymbol)
     });
@@ -41,7 +43,13 @@ const YourDash = () => {
                           {stock.symbol}
                           </td>
                           <td>
-                          {stock.ceo}
+                          {stock.close}
+                          </td>
+                          <td>
+                          {stock.high}
+                          </td>
+                          <td>
+                          {stock.low}
                           </td>
                         </tr>
                         )
