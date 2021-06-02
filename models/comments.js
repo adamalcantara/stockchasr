@@ -3,14 +3,12 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
     username: String,
-    title: String, 
-    comments: [{ body: String, date: Date }],
-    date: { type: Date, default: Date.now },
+    stock: String, 
+    comments: String,
 });
 
-const Comment = mongoose.model('comment', commentSchema);
 
 
 
 
-module.exports = Comment;
+module.exports = mongoose.model('comments', commentSchema);
