@@ -44,9 +44,9 @@ const YourDash = () => {
                 </tr>
             </thead>
                 <tbody>
-                    {watchlist.map((stock) => {
+                    {watchlist.map((stock, i) => {
                         return(
-                        <tr>
+                        <tr key={i}>
                           <td>
                           {stock.symbol}
                           </td>
