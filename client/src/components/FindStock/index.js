@@ -36,7 +36,9 @@ function FindStock() {
   }
 
   const getDailyInfo = (search) => {
-    API.findDailyInfo(search).then((res) => {
+    var todayDate = new Date().toISOString().slice(0, 10);
+    todayDate = todayDate.toString()
+    API.findDailyInfo(search, todayDate).then((res) => {
       console.log('This is the Daily Info')
       console.log(res.data)
 

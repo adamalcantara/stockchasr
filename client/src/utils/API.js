@@ -2,6 +2,7 @@ import axios from "axios";
 const ApiKey = 'd8fc6a7a05fe981d498316ed91194d9d';
 const polyApi = 'ed_5Kc2Wrznyf4U8Upim_3pyVBqDKnXS';
 
+
 export default {
   //Find Stock using the marketstack API.  Used in the findStock component
   findStock: function (searchValue) {
@@ -36,6 +37,9 @@ export default {
   //Find stock news using the polygon API
   findNews: function(searchValue) {
     return axios.get('https://api.polygon.io/v2/reference/news?limit=1&order=descending&sort=published_utc&ticker=' + searchValue + '&published_utc.gte=2021-04-26&apiKey=' + polyApi)
+  },
+  deleteStock: function (stock) {
+    return axios.delete("/api/users/watchlist/" + stock)
   }
 };
 
