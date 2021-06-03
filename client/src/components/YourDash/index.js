@@ -82,10 +82,10 @@ const YourDash = () => {
           </tr>
         </thead>
         <tbody>
-          {watchlist.map((stock) => {
+          {watchlist.map((stock, i) => {
           console.log(stock.id)
             return (
-              <tr>
+              <tr key={i}>
                 <td>
                   <button onClick={(e) => submit(stock.id)}><FaTimes style={{ color: 'red' }} /></button>
                 </td>

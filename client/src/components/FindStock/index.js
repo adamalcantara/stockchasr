@@ -117,9 +117,9 @@ function FindStock() {
 
       {isSearched ? <div className="stockData">
         <h2>{stock.name}</h2>
-        <h4>{stock.ceo}</h4>
-        <h5>{stock.industry}</h5>
-        <h5>{stock.exchange} {stock.exchangeSymbol}</h5>
+        <h4><strong>CEO: </strong>{stock.ceo}</h4>
+        <h5><strong>Industry: </strong> {stock.industry}</h5>
+        <h5><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
         <a href={stock.url}>{stock.url}</a>
         <p>{stock.description}</p>
       </div> : null}

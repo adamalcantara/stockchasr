@@ -128,19 +128,21 @@ module.exports = {
 		//Update the watchlist by id
 		Watchlist.findByIdAndDelete(req.params.id)
 			.then(list => {
+				console.log('This is list', list)
 				console.log('This is the list data', list._id)
+				// Finds Account (with user_id) with that added the stock
 				Account.findByIdAndUpdate({ _id: req.session.user_id },
 					{
 						$pull:
-						{
+						{	// goes to watch list and pulls out the _id from the accounts watchlist
 							watchlist: {
 								'_id': list._id
 							}
 						}
-					},(err, docs) => {
-						if(err) {
+					}, (err, docs) => {
+						if (err) {
 							throw err;
-						} 
+						}
 						console.log('this is the docs', docs)
 					})
 			}).then(data => {
@@ -150,14 +152,6 @@ module.exports = {
 				console.log(err)
 				res.json(err)
 			})
-
-		// , err => {
-		// 	if(err) {
-		// 		res.status(400)
-		// 		.json(err)
-		// 	}
-		// 	res.status(200)
-		// }
 	}
 
 };
