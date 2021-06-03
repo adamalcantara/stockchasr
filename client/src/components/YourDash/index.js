@@ -26,7 +26,8 @@ const YourDash = () => {
       //Set the state of watchlist to the array above
       setWatchlist(watchlistSymbol)
     });
-  } //UseEffect function, runs on page load, only once
+  }
+   //UseEffect function, runs on page load, only once
   useEffect(() => {
     // //Get the watchlist from the API
     // API.getWatchlist().then((res) => {
@@ -55,7 +56,7 @@ const YourDash = () => {
   // function that calls deleteStock API
   function submit (id) {
     console.log('this is the id', id)
-   API.deleteStock(id).then(data=>{
+   API.deleteStock(id).then(data => {
      console.log(" this is data", data)
      if(data.status === 200) {
        getAllWatchlist()

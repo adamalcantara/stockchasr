@@ -1,6 +1,6 @@
 const { Watch } = require('@material-ui/icons');
 const passport = require('passport');
-const {Watchlist, Account} = require("../models");
+const { Watchlist, Account } = require("../models");
 const { remove } = require('../models/watchlist');
 
 
@@ -87,46 +87,69 @@ module.exports = {
 		console.log(`This is whipped cream goin in the coffee goin on right here guys ${req.statusCode}`);
 		// update state user string for the symbol
 		Watchlist.create(req.body)
-		.then (data => {
-			console.log("congratulations, you did it, ya filthy animal")
-			console.log(data)
-			console.log("We should have console logged data already")
-			return Account.findOneAndUpdate({_id: req.session.user_id}, {$addToSet: {watchlist: data}}, {new:true} )
-			
-			
-		// }).then(data => {
-		// 	res.json(data)
-		// 	console.log(data)
-		}).catch (err => {
-			console.log(err)
-			res.json(err)
-		})
+			.then(data => {
+				//console log the data of the watchlist
+				// console.log("congratulations, you did it, ya filthy animal")
+				// console.log(data)
+				// console.log("We should have console logged data already")
+				//Find an account with the id that is logged in, and add the watchlist data to the set
+				return Account.findOneAndUpdate({ _id: req.session.user_id }, { $addToSet: { watchlist: data } }, { new: true })
+
+
+				// }).then(data => {
+				// 	res.json(data)
+				// 	console.log(data)
+			}).catch(err => {
+				console.log(err)
+				res.json(err)
+			})
 		res.status(200).send("Sounds good, John!");
 	},
 
+	//Get the watchlist data from the db
 	getWatchList: function (req, res) {
-		console.log(`This is getting the watchlist ${req.statusCode}`);
-		Account.findOne({_id: req.session.user_id})
-		.then(data => {
-			res.json(data.watchlist)
-		}) .catch (err => {
-			console.log(err)
-			res.json(err)
-		})
+		// console.log(`This is getting the watchlist ${req.statusCode}`);
+		//Find the data for the account that is logged in
+		Account.findOne({ _id: req.session.user_id })
+			.then(data => {
+				//Take data.watchlist and convert it to json
+				res.json(data.watchlist)
+			}).catch(err => {
+				console.log(err)
+				res.json(err)
+			})
 		// getWatchlist.create(req.body)		
 	},
 
-	deleteStock: function(req, res) {
+	//Delete a stock from the watchlist
+	deleteStock: function (req, res) {
 		console.log(req.params)
-		console.log('This is req data', req.data)
+		console.log('This is req data', req.params.id)
+		//Update the watchlist by id
 		Watchlist.findByIdAndDelete(req.params.id)
-		.then(data => {
-			console.log("This is data after watchlist", data)
-			res.status(200).json(data)
-		}) .catch (err => {
-			console.log(err)
-			res.json(err)
-		})
+			.then(list => {
+				console.log('This is the list data', list._id)
+				Account.findByIdAndUpdate({ _id: req.session.user_id },
+					{
+						$pull:
+						{
+							watchlist: {
+								'_id': list._id
+							}
+						}
+					},(err, docs) => {
+						if(err) {
+							throw err;
+						} 
+						console.log('this is the docs', docs)
+					})
+			}).then(data => {
+				res.status(200).json(data)
+			})
+			.catch(err => {
+				console.log(err)
+				res.json(err)
+			})
 
 		// , err => {
 		// 	if(err) {
@@ -136,4 +159,5 @@ module.exports = {
 		// 	res.status(200)
 		// }
 	}
+
 };
