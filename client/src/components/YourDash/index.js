@@ -68,6 +68,7 @@ const YourDash = () => {
     <div>
       <h1>You have reached Your Dashboard</h1>
 
+
       <div> </div>
       <table id="watch-list">
         <thead>
@@ -104,6 +105,7 @@ const YourDash = () => {
           })}
         </tbody>
       </table>
+
     </div>
 
   );
