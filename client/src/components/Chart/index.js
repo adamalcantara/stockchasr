@@ -4,6 +4,8 @@ import API from "../../utils/API";
 import SearchForm from "../FindStock/SearchForm"
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
+require('dotenv').config()
+const ApiKey = process.env.REACT_APP_API_KEY;
 
 
 class Chart extends Component {
@@ -19,7 +21,7 @@ class Chart extends Component {
     componentDidMount(search) {
         //Reference: https://reactjs.org/docs/faq-ajax.html#example-using-ajax-results-to-set-local-state
         
-        fetch("https://api.marketstack.com/v1/eod?access_key=d8fc6a7a05fe981d498316ed91194d9d&symbols=" + this.props.searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")
+        fetch("https://api.marketstack.com/v1/eod?access_key=" + ApiKey + "&symbols=" + this.props.searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")
             .then(res => res.json())
             .then(
                 (data) => {

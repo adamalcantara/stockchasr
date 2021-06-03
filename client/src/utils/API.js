@@ -1,6 +1,8 @@
 import axios from "axios";
-const ApiKey = 'd8fc6a7a05fe981d498316ed91194d9d';
-const polyApi = 'ed_5Kc2Wrznyf4U8Upim_3pyVBqDKnXS';
+require('dotenv').config()
+const ApiKey = process.env.REACT_APP_API_KEY;
+const polyApi = process.env.REACT_APP_POLY_API;
+
 
 
 export default {
