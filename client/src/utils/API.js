@@ -40,14 +40,6 @@ export default {
   },
   deleteStock: function (stock) {
     return axios.delete("/api/users/watchlist/" + stock)
-
-  addComment: function (comment) {
-    console.log(comment)
-    return axios.post('/api/comments/comment', comment)
-  },
-  getComment: function ({searchValue}) {
-    console.log(searchValue)
-    return axios.get('/api/comments/comment/' + searchValue)
   }
 };
 
