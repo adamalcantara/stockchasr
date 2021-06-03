@@ -48,6 +48,6 @@ export default {
   getComment: function ({searchValue}) {
     console.log(searchValue)
     return axios.get('/api/comments/comment/' + searchValue)
-  }
+  },
 };
 
