@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import Card from "../../components/Card"
 import { UserContext } from "../../utils/UserContext";
-import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter, useHistory } from "react-router-dom";
 
 //Material UI imports
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,6 +20,10 @@ import FindStock from "../../components/FindStock";
 import YourDash from '../../components/YourDash';
 import YourConnections from "../../components/YourConnections";
 
+//importing Auth
+import Auth from "../../utils/Auth";
+
+//Some styling for MaterialUI
 const useStyles = makeStyles((theme) => ({
     drawerPaper: { width: 'inherit' },
     link: {
@@ -36,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 function ProtectedRoute() {
 
     const [user, dispatch] = useContext(UserContext)
+    const history = useHistory();
     console.log(user)
 
     useEffect(() => {
@@ -72,7 +77,7 @@ function ProtectedRoute() {
                     anchor="left"
                     open={true}
                     classes={{ paper: classes.drawerPaper }}>
-                    <img src={Logo} alt="logo" className={classes.img}/>
+                    <img src={Logo} alt="logo" className={classes.img} />
                     <List>
                         <Link to="/dashboard" className={classes.link}>
                             <ListItem button>
@@ -90,14 +95,30 @@ function ProtectedRoute() {
                                 <ListItemText primary={"Find A Stock"} />
                             </ListItem>
                         </Link>
-                        <Link to="/connections" className={classes.link}>
-                            <ListItem button>
+                        <Link to="/" className={classes.link}>
+                            <ListItem button onClick={() => {
+                                Auth.signout(() => history.push('/'))
+                                dispatch({
+                                    type: "GET_USER",
+                                    payload: {}
+                                })
+                            }}>
                                 <ListItemIcon>
                                     <PeopleAltIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"Connections"} />
+                                <ListItemText primary={"Logout"} />
                             </ListItem>
                         </Link>
+                        {/* <button className="btn"
+                            onClick={() => {
+                                Auth.signout(() => history.push('/'))
+                                dispatch({
+                                    type: "GET_USER",
+                                    payload: {}
+                                })
+                            }}>
+                            Logout
+			            </button> */}
                     </List>
                 </Drawer>
                 <Switch>
