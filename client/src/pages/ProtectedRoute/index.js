@@ -14,6 +14,7 @@ import Logo from "../../assets/logoblue.png";
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import LineStyleIcon from '@material-ui/icons/LineStyle';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 //Importing pages
 import FindStock from "../../components/FindStock";
@@ -104,7 +105,7 @@ function ProtectedRoute() {
                                 })
                             }}>
                                 <ListItemIcon>
-                                    <PeopleAltIcon />
+                                    <ExitToAppIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={"Logout"} />
                             </ListItem>
