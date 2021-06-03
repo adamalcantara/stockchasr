@@ -31,5 +31,10 @@ router
   .route("/watchlist")
   .get(usersController.getWatchList)
   .post(usersController.addToWatchlist)
+
+router
+  .route("/watchlist/:id")
+  .delete(usersController.deleteStock)
+
   
 module.exports = router;

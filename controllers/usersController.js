@@ -1,5 +1,7 @@
+const { Watch } = require('@material-ui/icons');
 const passport = require('passport');
 const {Watchlist, Account} = require("../models");
+const { remove } = require('../models/watchlist');
 
 
 module.exports = {
@@ -111,8 +113,27 @@ module.exports = {
 			console.log(err)
 			res.json(err)
 		})
-		// getWatchlist.create(req.body)
+		// getWatchlist.create(req.body)		
+	},
 
-		
+	deleteStock: function(req, res) {
+		console.log(req.params)
+		console.log('This is req data', req.data)
+		Watchlist.findByIdAndDelete(req.params.id)
+		.then(data => {
+			console.log("This is data after watchlist", data)
+			res.status(200).json(data)
+		}) .catch (err => {
+			console.log(err)
+			res.json(err)
+		})
+
+		// , err => {
+		// 	if(err) {
+		// 		res.status(400)
+		// 		.json(err)
+		// 	}
+		// 	res.status(200)
+		// }
 	}
 };
