@@ -37,7 +37,7 @@ function Register() {
 								Auth.authenticate(() => { //Update the boolean and take off the cuffs
 									// setRedirectToReferrer(true)
 									console.log(`Response in login ${JSON.stringify(response)}`);
-									history.push("/dashboard")
+									history.push("/protected")
 								});
 							}
 						})
