@@ -4,8 +4,9 @@ import API from "../../utils/API";
 
 const YourDash = () => {
   const [watchlist, setWatchlist] = useState([]);
+  const [isSearched, setIsSearched] = useState(false);
 
-  function getAllWatchlist () {
+  function getAllWatchlist() {
 
     API.getWatchlist().then((res) => {
       console.log(res.data);
@@ -22,12 +23,13 @@ const YourDash = () => {
           low: res.data[i].low,
           id: res.data[i]._id
         });
+        setIsSearched(true)
       }
       //Set the state of watchlist to the array above
       setWatchlist(watchlistSymbol)
     });
   }
-   //UseEffect function, runs on page load, only once
+  //UseEffect function, runs on page load, only once
   useEffect(() => {
     // //Get the watchlist from the API
     // API.getWatchlist().then((res) => {
@@ -54,25 +56,24 @@ const YourDash = () => {
 
   console.log(watchlist);
   // function that calls deleteStock API
-  function submit (id) {
+  function submit(id) {
     console.log('this is the id', id)
-   API.deleteStock(id).then(data => {
-     console.log(" this is data", data)
-     if(data.status === 200) {
-       getAllWatchlist()
-     }
-   });
+    API.deleteStock(id).then(data => {
+      console.log(" this is data", data)
+      if (data.status === 200) {
+        getAllWatchlist()
+      }
+    });
 
   }
 
   return (
     <div>
       <h1>You have reached Your Dashboard</h1>
-
-
-      <div> </div>
+      {isSearched === false ? <h5>You don’t have anything in your watch list yet!  Add something to your watch list in the Find Stock page.</h5>: ''}
+       <div>
       <table id="watch-list">
-        <thead>
+      {isSearched ?<thead>
           <tr>
             <th></th>
             <th>Symbol</th>
@@ -80,10 +81,10 @@ const YourDash = () => {
             <th>High</th>
             <th>Low</th>
           </tr>
-        </thead>
-        <tbody>
+        </thead>: ''}
+        {isSearched ? <tbody>
           {watchlist.map((stock, i) => {
-          console.log(stock.id)
+            console.log(stock.id)
             return (
               <tr key={i}>
                 <td>
@@ -104,8 +105,10 @@ const YourDash = () => {
               </tr>
             )
           })}
-        </tbody>
-      </table>
+        </tbody>: ''}
+      </table> 
+      </div>
+      
 
     </div>
 
