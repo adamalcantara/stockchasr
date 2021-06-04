@@ -1,0 +1,25 @@
+#comment-header {
+    font-size: 40px;
+}
+
+#comment-list {
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+.commentForm {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+#commentbtn {
+    margin-top: 10px;
+    width: 125px;
+    position: relative;
+    margin-right: none;
+}
+
+.comments {
+    font-size: 20px;
+}
