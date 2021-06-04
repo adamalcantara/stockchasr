@@ -4,7 +4,7 @@ import API from "../../utils/API";
 
 const YourDash = () => {
   const [watchlist, setWatchlist] = useState([]);
-  const [isSearched, setIsSearched] = useState(false);
+  const [isSearched, setIsSearched] = useState(true);
 
   function getAllWatchlist() {
 
@@ -62,6 +62,7 @@ const YourDash = () => {
       console.log(" this is data", data)
       if (data.status === 200) {
         getAllWatchlist()
+        setIsSearched(false)
       }
     });
 

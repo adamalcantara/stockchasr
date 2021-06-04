@@ -12,6 +12,8 @@ function FindStock() {
   const [chartData, setChartData] = useState([])
   const [haveChartData, setHaveChartData] = useState([])
   const [dailyData, setDailyData] = useState({})
+  const [commentList, setCommentList] = useState([]);
+
 
   //console.log the status of isSearched (should be false by default and changed to true once the getStockInfo function is called onClick of search button)
   console.log(isSearched)
@@ -23,6 +25,7 @@ function FindStock() {
     getMarketInfo(searchValue);
     getChartInfo(searchValue);
     getDailyInfo(searchValue);
+    getAllComments(searchValue);
     //Calling the function from the API file, then console logging the result
     API.findInfo(searchValue).then((res) => {
       console.log(res.data);
@@ -34,6 +37,26 @@ function FindStock() {
     })
     //Set the status of isSearched to true (This will make elements visible on the page)
     
+  }
+
+  // Moved here because this component renders everything
+  function getAllComments(searchValue) {
+    console.log("Alligators cant get aids");
+    API.getComment( searchValue ).then((res) => {
+      console.log(res.data);
+      var commentListArr = [];
+      console.log("This is from the get all comments function");
+      console.log(commentListArr);
+      for (var i = 0; i < res.data.length; i++) {
+        console.log('Look here', res.data[i].stock)
+          commentListArr.push({
+            username: res.data[i].username,
+            comment: res.data[i].comments,
+          });
+      }
+      setCommentList(commentListArr);
+      
+    });
   }
 
   const getDailyInfo = (search) => {
@@ -123,7 +146,7 @@ function FindStock() {
         <a href={stock.url}>{stock.url}</a>
         <p>{stock.description}</p>
       </div> : null}
-      {isSearched ? <CommentForm searchValue={searchValue} />: ""}
+      {isSearched ? <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol}/>: ""}
     </div>
   );
 
