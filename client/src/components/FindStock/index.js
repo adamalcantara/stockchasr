@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import SearchForm from "./SearchForm";
 import CommentForm from "../CommentForm";
 import CanvasJSReact from '../../assets/canvasjs.stock.react';
+import "./style.css"
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 const ApiKey = process.env.REACT_APP_API_KEY;
@@ -47,22 +48,23 @@ function FindStock() {
   }
 
   const newChartInfo = (search) => {
+
     API.findChartInfo(search)
     .then(
         (data) => {
-            var dps = [];
-            for (var i = 0; i < data.data.length; i++) {
-                dps.push({
-                    x: new Date(data.data[i].date),
-                    y: Number(data.data[i].close)
-                });
-            }
-            console.log("DUMMY CHART DATA RIGHT HERE")
-            console.log(dps)
-            setIsLoaded(true)
-            setData(dps)
+          var dps = [];
+          for (var i = 0; i < data.data.length; i++) {
+            dps.push({
+              x: new Date(data.data[i].date),
+              y: Number(data.data[i].close)
+            });
+          }
+          console.log("DUMMY CHART DATA RIGHT HERE")
+          console.log(dps)
+          setIsLoaded(true)
+          setData(dps)
         }
-    )
+      )
   }
 
   // Moved here because this component renders everything
@@ -105,13 +107,8 @@ function FindStock() {
   }, []);
 
   const options = {
-    title: {
-      text: ""
-    },
-    theme: "light2",
-    subtitles: [{
-      text: "USD"
-    }],
+    backgroundColor: "#181818",
+    theme: "dark1",
     charts: [{
       axisX: {
         crosshair: {
@@ -202,7 +199,9 @@ function FindStock() {
 
 
   return (
-    <div>
+    <div id="findstock">
+      <h1>Find A Stock</h1>
+
       {/* Search form element */}
       <SearchForm
         searchValue={searchValue}
@@ -214,22 +213,30 @@ function FindStock() {
         handleInputChange={handleInputChange}
       />
 
-      {/* All elements below only render when isSearched is true */}
-      {isSearched ? <button onClick={() => API.addToWatchlist(dailyData)}>Add To Watchlist</button> : null}
-      {isSearched ? <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1> : <h1>Search For A Stock</h1>}
+      <div className="magicBox">
+        {/* All elements below only render when isSearched is true */}
+        {isSearched ? 
+        <div className="stockHeader">
+        <h1 className="stockSymbol">{stock.symbol}</h1>
+        <img src={stock.logo} className="stockImg"></img>
+        <button className="btn watchlistbtn" onClick={() => API.addToWatchlist(dailyData)}>Add To Watchlist</button>
+        </div>
+        : <h1>Search For A Stock</h1>}
 
-      {isSearched ? <CanvasJSStockChart containerProps={containerProps} options={options} /> : null}
+        {isSearched ? <CanvasJSStockChart containerProps={containerProps} options={options} /> : null}
 
 
-      {isSearched ? <div className="stockData">
-        <h2>{stock.name}</h2>
-        <h4><strong>CEO: </strong>{stock.ceo}</h4>
-        <h5><strong>Industry: </strong> {stock.industry}</h5>
-        <h5><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
-        <a href={stock.url}>{stock.url}</a>
-        <p>{stock.description}</p>
-      </div> : null}
-      {isSearched ? <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol} /> : ""}
+        {isSearched ? <div className="stockData">
+          <h2>{stock.name}</h2>
+          <h4><strong>CEO: </strong>{stock.ceo}</h4>
+          <h5><strong>Industry: </strong> {stock.industry}</h5>
+          <h5><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
+          <a href={stock.url}>{stock.url}</a>
+          <p>{stock.description}</p>
+        </div> : null}
+        {isSearched ? <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol} /> : ""}
+      </div>
+
     </div>
   );
 
