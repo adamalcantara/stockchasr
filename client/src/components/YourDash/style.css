@@ -1,0 +1,44 @@
+#dashboard {
+    width: 100%;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 15px;
+}
+
+#watch-list {
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#watch-list td, #watch-list th {
+    border: 1px solid rgb(104, 104, 104);
+    padding: 8px;
+}
+
+#watch-list tr:nth-child(even){background-color: #4a5465;}
+  
+#watch-list tr:hover {
+    background-color: rgb(142, 142, 142);
+    color: white;
+}
+
+#watch-list th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #7096c5;
+  color: white;
+  border: none;
+  border-top: 1px solid rgb(104, 104, 104);
+}
+
+.deleteBtn {
+    border: none;
+    background-color: transparent;
+}
+
+.deleteBtn:hover {
+    cursor: pointer;
+}

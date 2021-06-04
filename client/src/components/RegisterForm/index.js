@@ -23,7 +23,7 @@ function RegisterForm({ onRegister }) {
 				<div className="form-group">
 					<input className="form-control" ref={userNameRef} type='text' name="username" placeholder='Enter Username' /><br />
 					<input className="form-control" ref={passwordRef} type='password' name="password" placeholder='Password' /><br />
-					<button className="btn btn btn-primary" type='submit'>Submit</button>
+					<button className="btn" type='submit'>Submit</button>
 				</div>
 			</form>
 		</Card>
