@@ -231,7 +231,7 @@ function FindStock() {
           <h4><strong>CEO: </strong>{stock.ceo}</h4>
           <h5><strong>Industry: </strong> {stock.industry}</h5>
           <h5><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
-          <a href={stock.url}>{stock.url}</a>
+          <a href={stock.url} target="_blank" rel="noreferrer noopener">{stock.url}</a>
           <p>{stock.description}</p>
         </div> : null}
         {isSearched ? <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol} /> : ""}
