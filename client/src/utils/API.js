@@ -40,6 +40,9 @@ export default {
   findNews: function(searchValue) {
     return axios.get('https://api.polygon.io/v2/reference/news?limit=1&order=descending&sort=published_utc&ticker=' + searchValue + '&published_utc.gte=2021-04-26&apiKey=' + polyApi)
   },
+  findNewsLand: function() {
+    return axios.get('https://api.polygon.io/v2/reference/news?limit=1&order=descending&sort=published_utc&ticker=AMZN&published_utc.gte=2021-04-26&apiKey=' + polyApi)
+  },
   deleteStock: function (stock) {
     return axios.delete("/api/users/watchlist/" + stock)
   },
