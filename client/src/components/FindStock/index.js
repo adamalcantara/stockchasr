@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import SearchForm from "./SearchForm";
-import Chart from "../Chart";
 import CommentForm from "../CommentForm";
+import CanvasJSReact from '../../assets/canvasjs.stock.react';
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
+const ApiKey = process.env.REACT_APP_API_KEY;
+
 
 function FindStock() {
   const [stock, setStock] = useState({});
@@ -13,6 +17,8 @@ function FindStock() {
   const [haveChartData, setHaveChartData] = useState([])
   const [dailyData, setDailyData] = useState({})
   const [commentList, setCommentList] = useState([]);
+  const [data, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
 
   //console.log the status of isSearched (should be false by default and changed to true once the getStockInfo function is called onClick of search button)
@@ -26,6 +32,7 @@ function FindStock() {
     getChartInfo(searchValue);
     getDailyInfo(searchValue);
     getAllComments(searchValue);
+    newChartInfo(searchValue)
     //Calling the function from the API file, then console logging the result
     API.findInfo(searchValue).then((res) => {
       console.log(res.data);
@@ -36,26 +43,46 @@ function FindStock() {
       // setSearchValue(res.data.symbol)
     })
     //Set the status of isSearched to true (This will make elements visible on the page)
-    
+
+  }
+
+  const newChartInfo = (search) => {
+    fetch("https://api.marketstack.com/v1/eod?access_key=" + ApiKey + "&symbols=" + searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")
+    .then(res => res.json())
+    .then(
+        (data) => {
+            var dps = [];
+            for (var i = 0; i < data.data.length; i++) {
+                dps.push({
+                    x: new Date(data.data[i].date),
+                    y: Number(data.data[i].close)
+                });
+            }
+            console.log("DUMMY CHART DATA RIGHT HERE")
+            console.log(dps)
+            setIsLoaded(true)
+            setData(dps)
+        }
+    )
   }
 
   // Moved here because this component renders everything
   function getAllComments(searchValue) {
     console.log("Alligators cant get aids");
-    API.getComment( searchValue ).then((res) => {
+    API.getComment(searchValue).then((res) => {
       console.log(res.data);
       var commentListArr = [];
       console.log("This is from the get all comments function");
       console.log(commentListArr);
       for (var i = 0; i < res.data.length; i++) {
         console.log('Look here', res.data[i].stock)
-          commentListArr.push({
-            username: res.data[i].username,
-            comment: res.data[i].comments,
-          });
+        commentListArr.push({
+          username: res.data[i].username,
+          comment: res.data[i].comments,
+        });
       }
       setCommentList(commentListArr);
-      
+
     });
   }
 
@@ -74,7 +101,61 @@ function FindStock() {
     setSearchValue(e.target.value)
   }
 
-  useEffect(() => console.log(searchValue), [searchValue]);
+  useEffect(() => {
+    setData([])
+  }, []);
+
+  const options = {
+    title: {
+      text: ""
+    },
+    theme: "light2",
+    subtitles: [{
+      text: "USD"
+    }],
+    charts: [{
+      axisX: {
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true,
+          valueFormatString: "MMM DD YYYY"
+        }
+      },
+      axisY: {
+        title: "Stock Price",
+        prefix: "$",
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true,
+          valueFormatString: "$#,###.##"
+        }
+      },
+      toolTip: {
+        shared: true
+      },
+      data: [{
+        name: "Price (in USD)",
+        type: "splineArea",
+        color: "#4577b5",
+        yValueFormatString: "$#,###.##",
+        xValueFormatString: "MMM DD YYYY",
+        dataPoints: data
+      }]
+    }],
+    navigator: {
+      slider: {
+        minimum: new Date("2017-05-01"),
+        maximum: new Date("2018-05-01")
+      }
+    }
+  };
+  const containerProps = {
+    width: "100%",
+    height: "450px",
+    margin: "auto"
+  };
+
+  let dataPoints = [];
 
   //Getting the market info
   const getMarketInfo = (search) => {
@@ -108,8 +189,8 @@ function FindStock() {
           console.log(dps)
         }
       )
-      //Call the function which will setChartData to the dps array above
-      gotChartInfo();
+    //Call the function which will setChartData to the dps array above
+    gotChartInfo();
   }
 
   //Function which will setChartData to the dps array above
@@ -117,7 +198,9 @@ function FindStock() {
     setChartData(dps);
     setIsSearched(true)
   }
-  
+
+
+
 
   return (
     <div>
@@ -135,8 +218,9 @@ function FindStock() {
       {/* All elements below only render when isSearched is true */}
       {isSearched ? <button onClick={() => API.addToWatchlist(dailyData)}>Add To Watchlist</button> : null}
       {isSearched ? <h1>{stock.symbol} <img src={stock.logo} style={{ width: '50', }}></img></h1> : <h1>Search For A Stock</h1>}
-      
-      {isSearched && chartData ? <Chart searchValue={searchValue} chartData={chartData} /> : "Loading..."}
+
+      {isSearched ? <CanvasJSStockChart containerProps={containerProps} options={options} /> : null}
+
 
       {isSearched ? <div className="stockData">
         <h2>{stock.name}</h2>
@@ -146,7 +230,7 @@ function FindStock() {
         <a href={stock.url}>{stock.url}</a>
         <p>{stock.description}</p>
       </div> : null}
-      {isSearched ? <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol}/>: ""}
+      {isSearched ? <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol} /> : ""}
     </div>
   );
 
