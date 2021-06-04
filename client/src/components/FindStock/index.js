@@ -48,9 +48,9 @@ function FindStock() {
   }
 
   const newChartInfo = (search) => {
-    fetch("https://api.marketstack.com/v1/eod?access_key=" + ApiKey + "&symbols=" + searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")
-      .then(res => res.json())
-      .then(
+
+    API.findChartInfo(search)
+    .then(
         (data) => {
           var dps = [];
           for (var i = 0; i < data.data.length; i++) {
