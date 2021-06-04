@@ -1,0 +1,46 @@
+#findstock {
+    width: 100%;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 15px;
+}
+
+.input {
+    width: 200px;
+    height: 38px;
+    font-size: 25px;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.searchForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.magicBox {
+    margin-top: 20px;
+}
+
+.stockHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.stockSymbol {
+    font-size: 75px;
+}
+
+.stockImg {
+    margin-left: 15px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.watchlistbtn {
+    margin-left: 50px;
+}
