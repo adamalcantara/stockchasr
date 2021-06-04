@@ -68,7 +68,7 @@ class Chart extends Component {
 
         const options = {
             title: {
-                text: "React StockChart with Spline Area Chart"
+                text: ""
             },
             theme: "light2",
             subtitles: [{
