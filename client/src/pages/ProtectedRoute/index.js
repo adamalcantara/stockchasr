@@ -18,17 +18,18 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 //Importing pages
 import FindStock from "../../components/FindStock";
 import YourDash from '../../components/YourDash';
-import YourConnections from "../../components/YourConnections";
 
 //importing Auth
 import Auth from "../../utils/Auth";
+
+import "./style.css"
 
 //Some styling for MaterialUI
 const useStyles = makeStyles((theme) => ({
     drawerPaper: { width: 'inherit' },
     link: {
         textDecoration: 'none',
-        color: theme.palette.text.primary
+        color: '#cbcbcb'
     },
     img: {
         margin: '20px',
@@ -72,6 +73,7 @@ function ProtectedRoute() {
         <Router>
             <div style={{ display: 'flex' }}>
                 <Drawer
+                    id="drawer"
                     style={{ width: '220px' }}
                     variant="persistent"
                     anchor="left"
@@ -79,23 +81,23 @@ function ProtectedRoute() {
                     classes={{ paper: classes.drawerPaper }}>
                     <img src={Logo} alt="logo" className={classes.img} />
                     <List>
-                        <Link to="/dashboard" className={classes.link}>
+                        <Link to="/dashboard" className="link">
                             <ListItem button>
                                 <ListItemIcon>
-                                    <LineStyleIcon />
+                                    <LineStyleIcon style={{ fill: 'white'}}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Dashboard"} />
                             </ListItem>
                         </Link>
-                        <Link to="/find" className={classes.link}>
+                        <Link to="/find" className="link">
                             <ListItem button>
                                 <ListItemIcon>
-                                    <ShowChartIcon />
+                                    <ShowChartIcon style={{ fill: 'white'}}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Find A Stock"} />
                             </ListItem>
                         </Link>
-                        <Link to="/" className={classes.link}>
+                        <Link to="/" className="link">
                             <ListItem button onClick={() => {
                                 Auth.signout(() => history.push('/'))
                                 dispatch({
@@ -104,7 +106,7 @@ function ProtectedRoute() {
                                 })
                             }}>
                                 <ListItemIcon>
-                                    <ExitToAppIcon />
+                                    <ExitToAppIcon style={{ fill: 'white'}}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Logout"} />
                             </ListItem>
@@ -127,9 +129,6 @@ function ProtectedRoute() {
                     </Route>
                     <Route exact path="/dashboard">
                         <YourDash />
-                    </Route>
-                    <Route exact path="/connections">
-                        <YourConnections />
                     </Route>
                 </Switch>
 

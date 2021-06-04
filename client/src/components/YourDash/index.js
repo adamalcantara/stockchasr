@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import API from "../../utils/API";
+import "./style.css"
 
 const YourDash = () => {
   const [watchlist, setWatchlist] = useState([]);
@@ -49,47 +50,47 @@ const YourDash = () => {
   }
 
   return (
-    <div>
-      <h1>You have reached Your Dashboard</h1>
-      {isSearched === false ? <h5>You don’t have anything in your watch list yet!  Add something to your watch list in the Find Stock page.</h5>: ''}
-       <div>
-      <table id="watch-list">
-      {isSearched ?<thead>
-          <tr>
-            <th></th>
-            <th>Symbol</th>
-            <th>Close</th>
-            <th>High</th>
-            <th>Low</th>
-          </tr>
-        </thead>: ''}
-        {isSearched ? <tbody>
-          {watchlist.map((stock, i) => {
-            console.log(stock.id)
-            return (
-              <tr key={i}>
-                <td>
-                  <button onClick={(e) => submit(stock.id)}><FaTimes style={{ color: 'red' }} /></button>
-                </td>
-                <td>
-                  {stock.symbol}
-                </td>
-                <td>
-                  {stock.close}
-                </td>
-                <td>
-                  {stock.high}
-                </td>
-                <td>
-                  {stock.low}
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>: ''}
-      </table> 
+    <div id="dashboard">
+      <h1>Dashboard</h1>
+      {isSearched === false ? <h5>You don’t have anything in your watch list yet!  Add something to your watch list in the Find Stock page.</h5> : ''}
+      <div>
+        <table id="watch-list">
+          {isSearched ? <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Close</th>
+              <th>High</th>
+              <th>Low</th>
+              <th></th>
+            </tr>
+          </thead> : ''}
+          {isSearched ? <tbody>
+            {watchlist.map((stock, i) => {
+              console.log(stock.id)
+              return (
+                <tr key={i}>
+                  <td>
+                    {stock.symbol}
+                  </td>
+                  <td>
+                    {stock.close}
+                  </td>
+                  <td>
+                    {stock.high}
+                  </td>
+                  <td>
+                    {stock.low}
+                  </td>
+                  <td>
+                    <button onClick={(e) => submit(stock.id)} className="deleteBtn"><FaTimes style={{ color: 'white' }} className="dBtn" /></button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody> : ''}
+        </table>
       </div>
-      
+
 
     </div>
 
