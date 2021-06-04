@@ -215,26 +215,33 @@ function FindStock() {
 
       <div className="magicBox">
         {/* All elements below only render when isSearched is true */}
-        {isSearched ? 
-        <div className="stockHeader">
-        <h1 className="stockSymbol">{stock.symbol}</h1>
-        <img src={stock.logo} className="stockImg"></img>
-        <button className="btn watchlistbtn" onClick={() => API.addToWatchlist(dailyData)}>Add To Watchlist</button>
-        </div>
-        : <h1>Search For A Stock</h1>}
+        {isSearched ?
+          <div className="stockHeader">
+            <h1 className="stockSymbol">{stock.symbol}</h1>
+            <img src={stock.logo} className="stockImg"></img>
+            <button className="btn watchlistbtn" onClick={() => API.addToWatchlist(dailyData)}>Add To Watchlist</button>
+          </div>
+          : <h1>Search For A Stock</h1>}
 
         {isSearched ? <CanvasJSStockChart containerProps={containerProps} options={options} /> : null}
 
 
         {isSearched ? <div className="stockData">
-          <h2>{stock.name}</h2>
-          <h4><strong>CEO: </strong>{stock.ceo}</h4>
-          <h5><strong>Industry: </strong> {stock.industry}</h5>
-          <h5><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
-          <a href={stock.url} target="_blank" rel="noreferrer noopener">{stock.url}</a>
-          <p>{stock.description}</p>
+
+          <div className="stats">
+            <h2>{stock.name}</h2>
+            <h4><strong>CEO: </strong>{stock.ceo}</h4>
+            <h5><strong>Industry: </strong> {stock.industry}</h5>
+            <h5><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
+            <a href={stock.url}>{stock.url}</a>
+            <p>{stock.description}</p>
+          </div>
+
+          <div className="comments">
+            <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol} />
+          </div>
+
         </div> : null}
-        {isSearched ? <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol} /> : ""}
       </div>
 
     </div>
