@@ -10,7 +10,7 @@ import "./style.css"
 const AuthButton = () => {
 	console.log("NAV", Auth.isAuthenticated);
 
-	const [user, dispatch] = useContext(UserContext);
+	const [dispatch] = useContext(UserContext);
 	const history = useHistory();
 
 	return (

@@ -12,7 +12,7 @@ const buttonStyle = {
 
 function Nav() {
 
-  const [user, dispatch] = useContext(UserContext);
+  const [user] = useContext(UserContext);
 
   const [open, setOpen] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
@@ -54,7 +54,7 @@ function Nav() {
         </ul>
       </div>
       <Link className="navbar-brand ml-auto" to="/" id="navbarlogo">
-        <img src={Logo} id="logo"/>
+        <img src={Logo} id="logo" alt="navbar logo"/>
         </Link>
     </nav>
   );

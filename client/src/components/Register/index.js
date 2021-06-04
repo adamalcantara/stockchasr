@@ -54,7 +54,7 @@ function Register() {
 	return (
 		<div className="pageContainer">
 			<div id="imgContainer">
-				<img src={Logo} id="loginLogo"/>
+				<img src={Logo} id="loginLogo" alt="login logo"/>
 			</div>
 			<RegisterForm onRegister={register} />
 		</div>
