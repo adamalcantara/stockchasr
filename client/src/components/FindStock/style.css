@@ -44,3 +44,20 @@
 .watchlistbtn {
     margin-left: 50px;
 }
+
+.stockData {
+    display: flex;
+    flex-direction: row;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}

@@ -14,7 +14,7 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
   const [user] = useContext(UserContext);
 
   return (
-    <div>
+    <div id="commentSection">
       <div id="comment-list">
         <p id="comment-header">Comments:</p>
         <table>
@@ -25,7 +25,7 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
             <th>Comments</th>
           </tr>
         </thead> */}
-          <tbody>
+          <tbody id="commentTable">
             {commentList.map((stock, i) => {
               console.log(stock);
               return (
