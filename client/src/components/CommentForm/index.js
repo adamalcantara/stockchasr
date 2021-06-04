@@ -1,6 +1,7 @@
 import React, { useRef, useContext } from "react";
 import API from "../../utils/API";
 import { UserContext } from "../../utils/UserContext";
+import "./style.css"
 
 function CommentForm({ searchValue, stockName, getComments, commentList }) {
   console.log("this is the stockName", stockName);
@@ -14,42 +15,48 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
 
   return (
     <div>
-      <table id="comment-list">
-        {/* <thead>
+      <div id="comment-list">
+        <p id="comment-header">Comments:</p>
+        <table>
+          {/* <thead>
           <tr>
             <th></th>
             <th>UserName</th>
             <th>Comments</th>
           </tr>
         </thead> */}
-        <tbody>
-          {commentList.map((stock, i) => {
-            console.log(stock);
-            return (
-              <tr key={i}>
-                <td>{stock.username} says:</td>
-                <td>{stock.comment}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <input type="text" placeholder="Comment" ref={input}></input>
-      <button
-        className="ml-3 btn btn-primary"
-        onClick={(e) => {
-          API.addComment({
-            comments: input.current.value,
-            username: user.username,
-            stock: searchValue,
-          });
-          input.current.value = "";
-          getComments(searchValue);
-        }}
-      >
-        Add Comment
+          <tbody>
+            {commentList.map((stock, i) => {
+              console.log(stock);
+              return (
+                <tr key={i} className="comments">
+                  <td class>{stock.username} says:</td>
+                  <td>{stock.comment}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="commentForm">
+        <textarea type="text" placeholder="Comment" ref={input}></textarea>
+        <button
+          id="commentbtn"
+          className="btn"
+          onClick={(e) => {
+            API.addComment({
+              comments: input.current.value,
+              username: user.username,
+              stock: searchValue,
+            });
+            input.current.value = "";
+            getComments(searchValue);
+          }}
+        >
+          Add Comment
       </button>
-      {/* <button onClick={(getAllComments)}>Get Comments</button>  */}
+      </div>
     </div>
   );
 }
