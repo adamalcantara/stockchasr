@@ -1,17 +1,16 @@
-import React, { useRef, useContext, useState, useEffect } from "react";
+import React, { useRef, useContext } from "react";
 import API from "../../utils/API";
 import { UserContext } from "../../utils/UserContext";
 
 function CommentForm({ searchValue, stockName, getComments, commentList }) {
-  console.log('this is the stockName', stockName)
+  console.log("this is the stockName", stockName);
   const input = useRef();
   // const [commentList, setCommentList] = useState([]);
 
   console.log("The hills are a live with the sound of music");
   console.log(searchValue);
 
-  const [user, dispatch] = useContext(UserContext);
-
+  const [user] = useContext(UserContext);
 
   return (
     <div>
@@ -27,7 +26,7 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
           {commentList.map((stock, i) => {
             console.log(stock);
             return (
-              <tr>
+              <tr key={i}>
                 <td>{stock.username} says:</td>
                 <td>{stock.comment}</td>
               </tr>
@@ -43,11 +42,10 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
             comments: input.current.value,
             username: user.username,
             stock: searchValue,
-          })
-          input.current.value = ''
-          getComments(searchValue)
-        }
-        }
+          });
+          input.current.value = "";
+          getComments(searchValue);
+        }}
       >
         Add Comment
       </button>

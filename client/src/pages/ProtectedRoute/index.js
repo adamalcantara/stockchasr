@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react'
-import Card from "../../components/Card"
 import { UserContext } from "../../utils/UserContext";
-import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 
 //Material UI imports
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,7 +12,7 @@ import Logo from "../../assets/logoblue.png";
 //Import icons
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import LineStyleIcon from '@material-ui/icons/LineStyle';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+// import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 //Importing pages

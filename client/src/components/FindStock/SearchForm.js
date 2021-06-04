@@ -1,7 +1,6 @@
-import React, {useRef} from 'react'
-import API from '../../utils/API' 
+import React from 'react'
 
-const SearchForm = ({ stock, getStockInfo, searchValue, handleInputChange }) => {
+const SearchForm = ({  getStockInfo, searchValue, handleInputChange }) => {
     // const input = useRef()
     
     return (
