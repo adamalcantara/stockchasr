@@ -7,7 +7,6 @@
 }
 
 #comment-list {
-    
     margin-bottom: 30px;
 }
 
@@ -23,13 +22,18 @@
     margin-right: none;
 }
 
-.comments {
+.commentTable {
     font-size: 20px;
     display: flex;
     flex-direction: row;
-   
+    padding: 7px;
+    margin-bottom: 10px;
 }
 
 table {
     width: 100%;
+}
+
+.textArea {
+    border-radius: 8px;
 }
