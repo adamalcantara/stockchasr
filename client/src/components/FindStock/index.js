@@ -228,13 +228,13 @@ function FindStock() {
 
         {isSearched ? <div className="stockData">
 
-          <div className="stats">
-            <h2>{stock.name}</h2>
-            <h4><strong>CEO: </strong>{stock.ceo}</h4>
-            <h5><strong>Industry: </strong> {stock.industry}</h5>
-            <h5><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
-            <a href={stock.url}>{stock.url}</a>
-            <p>{stock.description}</p>
+        <div className="stats">
+            <h2 id="stockname">{stock.name}</h2>
+            <h4 id="stockceo"><strong>CEO: </strong>{stock.ceo}</h4>
+            <h5 id="stockindustry"><strong>Industry: </strong> {stock.industry}</h5>
+            <h5 id="stockexchange"><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
+            <a id="stockurl" href={stock.url}>{stock.url}</a>
+            <p id="stockdescription">{stock.description}</p>
           </div>
 
           <div className="comments">
