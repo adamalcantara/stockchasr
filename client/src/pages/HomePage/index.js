@@ -11,7 +11,7 @@ function HomePage() {
         <div>
             <Nav />
             <Router>
-                <div className="pageContainer">
+                <div className="homepageContainer">
                     <Switch>
                         <Route exact path="/">
                             <Land />

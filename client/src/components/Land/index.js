@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import macbook from "./homeimg.png"
 import News from '../FindStock/News'
 import API from '../../utils/API'
+import "./style.css"
 
 const Land = () => {
     // const news = [];
@@ -22,10 +24,13 @@ const Land = () => {
     // useEffect(() => getNewsLand())
     return (
         <div>
-            <h1>Hello there, welcome to StockChasr</h1>
-            <p>Track your investments & search for new opportunities.</p>
-            {/* <h2>{news.title}</h2> */}
-            {/* <News news={news}/> */}
+            <div id="landpgcontent">
+                <div id="text">
+                <p>Track your investments & search for new opportunities.</p>
+                <p>Join StockChasr today.</p>
+                </div>
+                <img src={macbook} alt="macbook with screenshot" id="macbook"></img>
+            </div>
         </div>
     )
 }
