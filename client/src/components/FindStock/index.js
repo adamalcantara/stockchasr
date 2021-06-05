@@ -233,7 +233,7 @@ function FindStock() {
             <h4 id="stockceo"><strong>CEO: </strong>{stock.ceo}</h4>
             <h5 id="stockindustry"><strong>Industry: </strong> {stock.industry}</h5>
             <h5 id="stockexchange"><strong>Exchange: </strong> {stock.exchange} ({stock.exchangeSymbol})</h5>
-            <a id="stockurl" href={stock.url}>{stock.url}</a>
+            <a id="stockurl" href={stock.url} target="_blank" rel="noreferrer noopener">{stock.url}</a>
             <p id="stockdescription">{stock.description}</p>
           </div>
 
