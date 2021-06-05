@@ -116,8 +116,11 @@ module.exports = {
         }
       })
       .then((data) => {
-        res.json(data);
-        console.log(data);
+        if (data.message){
+          res.json(data)
+        } else {
+          res.json({...data, message: "Successfully Added"});
+        }
       })
       .catch((err) => {
         console.log(err);
