@@ -39,6 +39,7 @@ function FindStock() {
       console.log(res.data);
       // setting state to data 
       setStock(res.data)
+      setSearchValue("")
       console.log(res.data.symbol)
       //set the state of search to res.data.symbol
       // setSearchValue(res.data.symbol)
@@ -99,7 +100,7 @@ function FindStock() {
   }
 
   const handleInputChange = e => {
-    setSearchValue(e.target.value)
+    setSearchValue(e.target.value.toUpperCase())
   }
 
   useEffect(() => {
@@ -196,7 +197,18 @@ function FindStock() {
   }
 
 
-
+const handleWatchlist = () => {
+  API.addToWatchlist(dailyData).then(res =>{
+    console.log(res)
+    alert(res.data.message)
+    // if(res.data.message==="Already added"){
+    //   alert("Error Adding To Watchlist")
+    // }
+  })
+  .catch (err => {
+    console.log(err)
+  })
+}
 
   return (
     <div id="findstock">
@@ -219,7 +231,7 @@ function FindStock() {
           <div className="stockHeader">
             <h1 className="stockSymbol">{stock.symbol}</h1>
             <img src={stock.logo} className="stockImg"></img>
-            <button className="btn watchlistbtn" onClick={() => API.addToWatchlist(dailyData)}>Add To Watchlist</button>
+            <button className="btn watchlistbtn" onClick={handleWatchlist}>Add To Watchlist</button>
           </div>
           : <h1>Search For A Stock</h1>}
 
