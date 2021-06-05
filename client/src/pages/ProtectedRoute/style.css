@@ -17,3 +17,9 @@
     text-decoration: none;
     color: #f9f9f9;
 }
+
+@media screen and (max-width: 980px) {
+    #drawer {
+        display: none;
+    }
+}
