@@ -22,3 +22,25 @@
   width: 350px;
   margin-left: 200px;
 }
+
+@media screen and (max-width: 768px) {
+  #navbar {
+    display: flex;
+    flex-direction: column;
+  }
+  #navbarlogo {
+    float: none;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  #logo {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #navbarNav {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
