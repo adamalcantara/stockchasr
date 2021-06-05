@@ -29,7 +29,7 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
             {commentList.map((stock, i) => {
               console.log(stock);
               return (
-                <tr key={i} className="comments">
+                <tr key={i} className="commentTable">
                   <td class>{stock.username} says:</td>
                   <td>{stock.comment}</td>
                 </tr>
@@ -40,7 +40,7 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
       </div>
 
       <div className="commentForm">
-        <textarea type="text" placeholder="Comment" ref={input}></textarea>
+        <textarea className="textArea"type="text" placeholder="Comment" ref={input}></textarea>
         <button
           id="commentbtn"
           className="btn"
