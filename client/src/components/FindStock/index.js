@@ -219,6 +219,7 @@ const handleWatchlist = () => {
 
       {/* Search form element */}
       <SearchForm
+        id="searchform"
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         getStockInfo={getStockInfo}
@@ -238,7 +239,7 @@ const handleWatchlist = () => {
           </div>
           : <h1>Search For A Stock</h1>}
 
-        {isSearched ? <CanvasJSStockChart containerProps={containerProps} options={options} /> : null}
+        {isSearched ? <CanvasJSStockChart containerProps={containerProps} options={options} id="chart"/> : null}
 
 
         {isSearched ? <div className="stockData">
