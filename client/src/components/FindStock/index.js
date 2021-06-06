@@ -21,7 +21,11 @@ function FindStock() {
   const [dailyData, setDailyData] = useState({})
   const [commentList, setCommentList] = useState([]);
   const [data, setData] = useState([]);
+
   const [isLoaded, setIsLoaded] = useState(true);
+
+
+
 
 
   //console.log the status of isSearched (should be false by default and changed to true once the getStockInfo function is called onClick of search button)
@@ -30,6 +34,7 @@ function FindStock() {
   //Getting the stock info
   const getStockInfo = (search) => {
     console.log(`searchValue is: ${searchValue}`);
+    setMessage("");
     //Call the getMarketInfo function
     setIsLoaded(false);
     getMarketInfo(searchValue);
@@ -203,7 +208,8 @@ function FindStock() {
 const handleWatchlist = () => {
   API.addToWatchlist(dailyData).then(res =>{
     console.log(res)
-    alert(res.data.message)
+    // alert(res.data.message)
+    setMessage(res.data.message)
     // if(res.data.message==="Already added"){
     //   alert("Error Adding To Watchlist")
     // }
@@ -234,7 +240,7 @@ const handleWatchlist = () => {
           <div className="stockHeader">
             <h1 className="stockSymbol">{stock.symbol}</h1>
             <img src={stock.logo} className="stockImg"></img>
-            <button className="btn watchlistbtn" onClick={handleWatchlist}>Add To Watchlist</button>
+          <button className="btn watchlistbtn" onClick={handleWatchlist}>{message || "Add To Watchlist"}</button>
           </div>
           : <h1>Search For A Stock</h1>}
 
