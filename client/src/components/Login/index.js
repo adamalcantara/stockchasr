@@ -35,6 +35,7 @@ function Login() {
 			},
 		})
 			.then((response) => {
+				console.log(response);
 				if (response.status === 200) { //All good
 					Auth.authenticate(() => { //Update the boolean and take off the cuffs
 						setRedirectToReferrer(true)
