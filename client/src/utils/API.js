@@ -11,6 +11,24 @@ export default {
     // return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + ApiKey + "&symbols=" + searchValue + "&interval=1min");
     return axios.get("https://api.marketstack.com/v1/eod?access_key=" + ApiKey + "&symbols=" + searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")
   },
+  findCoinStockPrice: function () {
+    // return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + ApiKey + "&symbols=" + searchValue + "&interval=1min");
+    return axios.get("https://api.polygon.io/v1/open-close/COIN/2021-06-01?unadjusted=true&apiKey=" + polyApi)
+  },
+  findEaStockPrice: function () {
+    // return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + ApiKey + "&symbols=" + searchValue + "&interval=1min");
+    return axios.get("https://api.polygon.io/v1/open-close/EA/2021-06-01?unadjusted=true&apiKey=" + polyApi)
+  },
+  
+  findDisStockPrice: function () {
+    // return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + ApiKey + "&symbols=" + searchValue + "&interval=1min");
+    return axios.get("https://api.polygon.io/v1/open-close/DIS/2021-06-01?unadjusted=true&apiKey=" + polyApi)
+  },
+ 
+  findOrclStockPrice: function () {
+    // return axios.get("https://api.marketstack.com/v1/intraday?access_key=" + ApiKey + "&symbols=" + searchValue + "&interval=1min");
+    return axios.get("https://api.polygon.io/v1/open-close/ORCL/2021-06-01?unadjusted=true&apiKey=" + polyApi)
+  },
   //Find Stock using marketstack API and then send it to the chart, used in the Chart component
   findChartInfo: function (searchValue) {
     return axios.get("https://api.marketstack.com/v1/eod?access_key=" + ApiKey + "&symbols=" + searchValue + "&date_from=2000-05-20&date_to=2021-05-30&limit=365")

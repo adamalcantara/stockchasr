@@ -4,10 +4,10 @@ import SearchForm from "./SearchForm";
 import CommentForm from "../CommentForm";
 import CanvasJSReact from '../../assets/canvasjs.stock.react';
 import "./style.css"
+import loadinggif from "../../assets/loadinganim.gif"
+
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
-const ApiKey = process.env.REACT_APP_API_KEY;
-
 
 function FindStock() {
   const [stock, setStock] = useState({});
@@ -19,8 +19,12 @@ function FindStock() {
   const [dailyData, setDailyData] = useState({})
   const [commentList, setCommentList] = useState([]);
   const [data, setData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [message, setMessage] = useState("");
+
+  const [isLoaded, setIsLoaded] = useState(true);
+
+
+
 
 
   //console.log the status of isSearched (should be false by default and changed to true once the getStockInfo function is called onClick of search button)
@@ -31,6 +35,7 @@ function FindStock() {
     console.log(`searchValue is: ${searchValue}`);
     setMessage("");
     //Call the getMarketInfo function
+    setIsLoaded(false);
     getMarketInfo(searchValue);
     getChartInfo(searchValue);
     getDailyInfo(searchValue);
@@ -215,6 +220,7 @@ const handleWatchlist = () => {
 
   return (
     <div id="findstock">
+      
       <h1>Find A Stock</h1>
 
       {/* Search form element */}
@@ -238,8 +244,7 @@ const handleWatchlist = () => {
           <button className="btn watchlistbtn" onClick={handleWatchlist}>{message || "Add To Watchlist"}</button>
           </div>
           : <h1>Search For A Stock</h1>}
-
-        {isSearched ? <CanvasJSStockChart containerProps={containerProps} options={options} id="chart"/> : null}
+        {isSearched ? !isLoaded ?  <img src={loadinggif}></img> : <CanvasJSStockChart containerProps={containerProps} options={options} id="chart" /> : null}
 
 
         {isSearched ? <div className="stockData">
