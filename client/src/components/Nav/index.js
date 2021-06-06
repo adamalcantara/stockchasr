@@ -5,6 +5,7 @@ import "./style.css";
 import AuthButton from "../AuthButton";
 import { UserContext } from "../../utils/UserContext";
 import Logo from "../../assets/logoblue.png"
+import Ticker from '../Ticker'
 //I want to add some basic inline styling here, even though we are bringing in styles
 const buttonStyle = {
   marginRight: 10
@@ -39,6 +40,7 @@ function Nav() {
 
 
   return (
+    <><Ticker />
     <nav className="navbar navbar-expand-lg mb-2">
       
       <div  id="navbarNav">
@@ -57,6 +59,7 @@ function Nav() {
         <img src={Logo} id="logo" alt="navbar logo"/>
         </Link>
     </nav>
+    </>
   );
 }
 

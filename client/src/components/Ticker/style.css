@@ -1,0 +1,14 @@
+#ticker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #7096c5;
+}
+
+span {
+  padding-right: 10px;
+}
+
+.tickerSymbol {
+  font-weight: 100;
+}
