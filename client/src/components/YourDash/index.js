@@ -43,7 +43,7 @@ const YourDash = () => {
       console.log(" this is data", data)
       if (data.status === 200) {
         getAllWatchlist()
-        setIsSearched(false)
+        setIsSearched(true)
       }
     });
 

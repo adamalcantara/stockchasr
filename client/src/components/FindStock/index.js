@@ -8,8 +8,6 @@ import loadinggif from "../../assets/loadinganim.gif"
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
-const ApiKey = process.env.REACT_APP_API_KEY;
-
 
 function FindStock() {
   const [stock, setStock] = useState({});
@@ -221,6 +219,7 @@ const handleWatchlist = () => {
 
   return (
     <div id="findstock">
+      
       <h1>Find A Stock</h1>
 
       {/* Search form element */}
