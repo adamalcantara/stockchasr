@@ -46,7 +46,7 @@ function FindStock() {
       console.log(res.data);
       // setting state to data 
       setStock(res.data)
-      setSearchValue("")
+      // setSearchValue("")
       console.log(res.data.symbol)
       //set the state of search to res.data.symbol
       // setSearchValue(res.data.symbol)

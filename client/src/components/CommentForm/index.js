@@ -30,7 +30,7 @@ function CommentForm({ searchValue, stockName, getComments, commentList }) {
               console.log(stock);
               return (
                 <tr key={i} className="commentTable">
-                  <td class>{stock.username} says:</td>
+                  <td>{stock.username} says:</td>
                   <td>{stock.comment}</td>
                 </tr>
               );
