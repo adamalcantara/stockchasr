@@ -103,6 +103,11 @@
     margin-left: 20px;
 }
 
+#loadinggif {
+    width: 50px;
+    margin-top: 50px;
+}
+
 @media screen and (max-width: 980px) {
     #findstock {
         margin-left: 0;
