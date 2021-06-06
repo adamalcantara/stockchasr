@@ -235,19 +235,18 @@ const handleWatchlist = () => {
         handleInputChange={handleInputChange}
       />
 
-      <div className="magicBox">
+      {isSearched ? null : <h1>Search For A Stock</h1>}
+      {isSearched ? !isLoaded ?  <img src={loadinggif} id="loadinggif"></img> : <div className="magicBox">
         {/* All elements below only render when isSearched is true */}
-        {isSearched ?
           <div className="stockHeader">
             <h1 className="stockSymbol">{stock.symbol}</h1>
             <img src={stock.logo} className="stockImg"></img>
           <button className="btn watchlistbtn" onClick={handleWatchlist}>{message || "Add To Watchlist"}</button>
           </div>
-          : <h1>Search For A Stock</h1>}
-        {isSearched ? !isLoaded ?  <img src={loadinggif}></img> : <CanvasJSStockChart containerProps={containerProps} options={options} id="chart" /> : null}
+        <CanvasJSStockChart containerProps={containerProps} options={options} id="chart" />
 
 
-        {isSearched ? <div className="stockData">
+        <div className="stockData">
 
         <div className="stats">
             <h2 id="stockname">{stock.name}</h2>
@@ -262,8 +261,10 @@ const handleWatchlist = () => {
             <CommentForm getComments={getAllComments} commentList={commentList} searchValue={searchValue} stockName={stock.symbol} />
           </div>
 
-        </div> : null}
+        </div> 
+        
       </div>
+      : null}
 
     </div>
   );
