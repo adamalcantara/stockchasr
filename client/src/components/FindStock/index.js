@@ -19,6 +19,7 @@ function FindStock() {
   const [dailyData, setDailyData] = useState({})
   const [commentList, setCommentList] = useState([]);
   const [data, setData] = useState([]);
+  const [message, setMessage] = useState("");
 
   const [isLoaded, setIsLoaded] = useState(true);
 
