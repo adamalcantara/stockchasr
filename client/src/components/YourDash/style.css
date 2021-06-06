@@ -41,3 +41,14 @@
 .deleteBtn:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width: 980px) {
+    #dashboard {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    #watch-list {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

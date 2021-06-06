@@ -225,6 +225,7 @@ const handleWatchlist = () => {
 
       {/* Search form element */}
       <SearchForm
+        id="searchform"
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         getStockInfo={getStockInfo}
@@ -243,8 +244,7 @@ const handleWatchlist = () => {
           <button className="btn watchlistbtn" onClick={handleWatchlist}>{message || "Add To Watchlist"}</button>
           </div>
           : <h1>Search For A Stock</h1>}
-
-        {isSearched ? !isLoaded ?  <img src={loadinggif}></img> : <CanvasJSStockChart containerProps={containerProps} options={options} /> : null}
+        {isSearched ? !isLoaded ?  <img src={loadinggif}></img> : <CanvasJSStockChart containerProps={containerProps} options={options} id="chart" /> : null}
 
 
         {isSearched ? <div className="stockData">
