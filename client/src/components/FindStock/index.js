@@ -4,7 +4,7 @@ import SearchForm from "./SearchForm";
 import CommentForm from "../CommentForm";
 import CanvasJSReact from '../../assets/canvasjs.stock.react';
 import "./style.css"
-import loadinggif from "../../assets/loadinganim.gif"
+import loadinggif from "../../assets/loadinganim1.gif"
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
