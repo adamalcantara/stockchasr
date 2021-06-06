@@ -71,7 +71,44 @@ function ProtectedRoute() {
 
     return (
         <Router>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex' }} id="protectedpage">
+                <nav id="navbar">
+                    <div className="navimgcontainer">
+                        <img src={Logo} alt="logo" className="navbarimg" />
+                    </div>
+                    <div className="navbarlink">
+                    <Link to="/dashboard" className="link">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <LineStyleIcon style={{ fill: 'white'}}/>
+                                </ListItemIcon>
+                                <ListItemText primary={"Dashboard"} />
+                            </ListItem>
+                        </Link>
+                        <Link to="/find" className="link">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <ShowChartIcon style={{ fill: 'white'}}/>
+                                </ListItemIcon>
+                                <ListItemText primary={"Find A Stock"} />
+                            </ListItem>
+                        </Link>
+                        <Link to="/" className="link">
+                            <ListItem button onClick={() => {
+                                Auth.signout(() => history.push('/'))
+                                dispatch({
+                                    type: "GET_USER",
+                                    payload: {}
+                                })
+                            }}>
+                                <ListItemIcon>
+                                    <ExitToAppIcon style={{ fill: 'white'}}/>
+                                </ListItemIcon>
+                                <ListItemText primary={"Logout"} />
+                            </ListItem>
+                        </Link>
+                    </div>
+                </nav>
                 <Drawer
                     id="drawer"
                     style={{ width: '220px' }}

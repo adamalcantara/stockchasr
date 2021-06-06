@@ -1,3 +1,29 @@
+#navbar {
+    width: 100%;
+    display: none;
+    background-color: rgb(46, 46, 46) !important;
+}
+
+.navimgcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.navbarimg {
+    width: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbarlink {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 #drawer {
     background-color: rgb(46, 46, 46) !important;
     color: white;
@@ -16,4 +42,16 @@
 .link:hover {
     text-decoration: none;
     color: #f9f9f9;
+}
+
+@media screen and (max-width: 980px) {
+    #protectedpage {
+        flex-direction: column;
+    }
+    #navbar {
+        display: initial;
+    }
+    #drawer {
+        display: none;
+    }
 }
