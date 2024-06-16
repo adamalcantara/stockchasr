@@ -1,16 +1,16 @@
 # StockChasr
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-  ## Link
-  [Deployed Heroku Link](https://stockchasr.herokuapp.com/)
+## Description 
+An application that allows the user to search for and view current stock information. The user can search individual stocks by their ticker symbol; the search result includes a dynamic chart that displays current and past stock prices, which exchange the searched stock in traded on, and other relevent information about the stock's company. The user can add a stock to a watchlist that then displays the stock's most recent high low and close price. 
+
+This project has been depreciated, please refer to the screenshots below for the implementation.
 
   ## Screenshots
   <img src="./1.png"></img>
   <img src="./2.png"></img>
   <img src="./3.png"></img>
 
-  ## Description 
-An application that allows the user to search for and view current stock information. The user can search individual stocks by their ticker symbol; the search result includes a dynamic chart that displays current and past stock prices, which exchange the searched stock in traded on, and other relevent information about the stock's company. The user can add a stock to a watchlist that then displays the stock's most recent high low and close price. 
   ## Table of Contents 
   * [Installation](#installation) 
   * [Usage](#Usage)
